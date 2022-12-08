@@ -86,42 +86,41 @@
                                             </td>
                                         </tr>
                                     <?php endforeach; ?> --}}
+                                    @foreach($sliders as $slider)
                                     <tr>
-                                            <td class="text-center">1</td>
+                                            <td class="text-center">{{ data_get($slider, 'id') }}</td>
                                             <td style="width:100px">
-                                                <img src="public/images/banners/" class="img-responsive">
+                                                <img src="{{ asset('storage') . '/upload/' . data_get($slider, 'img') }}" class="img-responsive">
                                             </td>
-                                            <td><a href="admin/sliders/update/"></a>
+                                            <td><a href="{{ route('slider.show', ['id' => data_get($slider, 'id')]) }}">{{ data_get($slider, 'name') }}</a>
                                             </td>
-                                            <td></td>
+                                            <td>{{ data_get($slider, 'slug') }}</td>
                                             <td class="text-center">
-                                                {{-- <a href="">
-                                                    <?php if($row['status']==1):?>
-                                                        <span class="glyphicon glyphicon-ok-circle mauxanh18"></span>
-                                                    <?php else: ?>
-                                                        <span class="glyphicon glyphicon-remove-circle maudo"></span>
-                                                    <?php endif; ?>
-                                                </a> --}}
+                                                @if(data_get($slider, 'status') == 1)
+                                                    <span class="glyphicon glyphicon-ok-circle mauxanh18"></span>
+                                                @else
+                                                    <span class="glyphicon glyphicon-remove-circle maudo"></span>
+                                                @endif
                                             </td>
                                                 <td class="text-center">
-                                                <a class="btn btn-success btn-xs" href="admin/sliders/update/'.$row['id'].'" role = "button">
+                                                <a class="btn btn-success btn-xs" href="{{ route('slider.show', ['id' => data_get($slider, 'id')]) }}" role = "button">
                                                     <span class="glyphicon glyphicon-edit"></span>Sửa
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="btn btn-danger btn-xs" href="admin/sliders/trash/" onclick="return confirm('Xác nhận xóa slider này ?')" role = "button">
+                                                <a class="btn btn-danger btn-xs" href="javascript:void(0)" id="delete_slider" data-url="{{ route('slider.delete', ['id' => data_get($slider, 'id')]) }}" onclick="return confirm('Xác nhận xóa slider này ?')" role = "button">
                                                     <span class="glyphicon glyphicon-trash"></span>Xóa
                                                 </a>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <ul class="pagination">
-                                        {{-- <?php echo $strphantrang ?> --}}
-                                    </ul>
+                                    {{-- {{ $paginator->appends($_GET)->links() }} --}}
+                                    {{ $sliders->links() }}
                                 </div>
                             </div>
                             <!-- /.ND -->
@@ -134,3 +133,29 @@
       <!-- /.row -->
     </section>
 @endsection
+
+@push('js')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('click', '#delete_slider', function (){
+                var url = $(this).data('url');
+                if (url) {
+                    $.ajax({
+                        method: 'DELETE',
+                        url: url,
+                        // enctype: 'multipart/form-data',
+                        // data: formData,
+                        // contentType: false,
+                        // processData: false,
+                        success: function () {
+                            // location.reload();
+                            window.location.reload(true);
+                        },
+                        error: function () {
+                        }
+                    });
+                }else {}
+            })
+        })
+    </script>
+@endpush

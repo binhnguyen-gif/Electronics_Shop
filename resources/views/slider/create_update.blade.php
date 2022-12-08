@@ -1,5 +1,10 @@
 @extends("layouts.app")
 
+@php
+    $isUpdate = isset($id) ? true : false;
+    $routeSubmit = isset($id) ? route('slider.update', $id) : route('slider.store');
+@endphp
+
 @section('page-title')
     <section class="content-header">
         <h1><i class="glyphicon glyphicon-picture"></i> Thêm Sliders</h1>
@@ -15,8 +20,11 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('slider.store') }}" enctype="multipart/form-data" method="post" accept-charset="utf-8" id="upload_slider">
+    <form action="{{ $routeSubmit }}" enctype="multipart/form-data" method="POST" accept-charset="utf-8" id="upload_slider">
         @csrf
+        @if($isUpdate)
+            @method('PUT')
+        @endif
         <section class="content">
           <!-- Info boxes -->
           <div class="row">
@@ -27,7 +35,7 @@
                             <!--ND-->
                             <div class="form-group">
                                 <label>Tên sliders<span class = "maudo">(*)</span></label>
-                                <input type="text" name="name" placeholder="Tên sliders" class="form-control">
+                                <input type="text" name="name" placeholder="Tên sliders" class="form-control" value="{{ !empty($slider) ? data_get($slider, 'name') : '' }}">
                                 <!-- <div class="error" id="password_error"></div> -->
                             </div>
                             <!--/.ND-->
@@ -36,14 +44,19 @@
                                 
                             <div class="form-group">
                                 <label>Hình ảnh <span class = "maudo">(*)</span></label>
-                                <input type="file" name="img" class="form-control" required="">
+                                <input type="file" name="img" class="form-control" required="" value="{{ !empty($slider) ? data_get($slider, 'img') : '' }}">
                                 <!-- <div class="error" id="password_error"></div> -->
                             </div>
                             <div class="form-group">
                                 <label>Trạng thái </label>
                                 <select name="status" class="form-control">
-                                    <option value="1">Hoạt động</option>
-                                    <option value="0">Ngừng hoạt động</option>
+                                    <option value="1" @if(data_get($slider, 'status') == 1) selected @endif>Hoạt động</option>
+                                    <option value="0" @if(data_get($slider, 'status') == 0) selected @endif>Ngừng hoạt động</option>
+                                    {{-- @if(isset($slider) && data_get($slider, 'status') == 1)
+                                        <option value="1">Hoạt động</option>
+                                    @else
+                                        <option value="0">Ngừng hoạt động</option>
+                                    @endif --}}
                                 </select>
                             </div>
                             </div>

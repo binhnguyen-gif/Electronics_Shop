@@ -65,13 +65,6 @@
         @endif
 
     </div>
-    {{-- <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script> --}}
     <!-- jQuery 2.2.3 -->
     {{-- <script src="{{ asset("assets/js/jquery-2.2.3.min.js") }}"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js" integrity="sha512-xTUUixz5iuBWnqBiM+zHpfoyU6gDpElnKG/QcA1SxLvy/jtfXEBjMKvKASxQdp/empqfJFWczQ2S9cotlKXT7g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -79,6 +72,13 @@
     <script src="{{ asset("assets/js/bootstrap.js") }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset("assets/js/app.min.js") }}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     @stack('js')
 </body>
 </html>
