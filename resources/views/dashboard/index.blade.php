@@ -1,10 +1,6 @@
 @extends("layouts.app")
 
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-
         <!-- Main content -->
         <section class="content">
             <!-- Small boxes (Stat box) -->
@@ -108,8 +104,6 @@
                 </div>
         </section>
         <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
     <script>
         google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawVisualization);

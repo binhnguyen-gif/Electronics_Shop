@@ -50,7 +50,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="">
+                <a href="{{ route('slider.index') }}">
                     <i class="fa fa-cogs"></i> <span>Giao diện</span>
                 </a>
             </li>
