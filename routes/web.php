@@ -31,5 +31,8 @@ Route::group(['prefix' => 'slider', 'as' => 'slider.'], function() {
     Route::get('/show/{id}', [SilderController::class, 'show'])->name('show');
     Route::put('/update/{id}', [SilderController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [SilderController::class, 'delete'])->name('delete');
+    Route::get('/recyclebin', [SilderController::class, 'recyclebin'])->name('recyclebin');
+    Route::put('/restore/{id}', [SilderController::class, 'restore'])->name('restore');
+    Route::delete('/forever-delete/{id}', [SilderController::class, 'foreverDelete'])->name('forever-delete');
 });
 

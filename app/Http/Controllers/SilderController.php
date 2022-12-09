@@ -15,7 +15,7 @@ use Log;
 class SilderController extends Controller
 {
     public function index() {
-        $sliders = Slider::query()->paginate(1);
+        $sliders = Slider::query()->paginate(5);
         // $paginator = new Paginator(data_get($sliders, 'items', []),
         // data_get($sliders, 'total', 0),
         // data_get($sliders, 'per_page', '10'),
@@ -98,6 +98,26 @@ class SilderController extends Controller
             DB::rollback();
             Log::error('Error delete slider' . $e->getMessage());
         }
+    }
+
+    public function recyclebin()
+    {
+        $recyclebin = Slider::onlyTrashed()->paginate(5);
+        return view('slider.recyclebin', compact('recyclebin'));
+    }
+
+    public function restore($id)
+    {
+        $recyclebin = Slider::withTrashed()->where('id', $id)->restore();
+        // return back()->with('success', true);
+        return response()->json(['status' => 200, 'msg' => false, 'data' => []]);
+    }
+
+    public function foreverDelete($id)
+    {
+        Slider::withTrashed()->where('id', $id)->forceDelete();
+        // return back()->with('success', true);
+        return response()->json(['status' => 200, 'msg' => false, 'data' => []]);
     }
    
 }
