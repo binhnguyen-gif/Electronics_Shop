@@ -35,7 +35,7 @@
                             <!--ND-->
                             <div class="form-group">
                                 <label>Tên sliders<span class = "maudo">(*)</span></label>
-                                <input type="text" name="name" placeholder="Tên sliders" class="form-control" value="{{ !empty($slider) ? data_get($slider, 'name') : '' }}">
+                                <input type="text" name="name" placeholder="Tên sliders" class="form-control" value="{{ isset($slider) ? data_get($slider, 'name') : '' }}">
                                 <!-- <div class="error" id="password_error"></div> -->
                             </div>
                             <!--/.ND-->
@@ -44,14 +44,14 @@
                                 
                             <div class="form-group">
                                 <label>Hình ảnh <span class = "maudo">(*)</span></label>
-                                <input type="file" name="img" class="form-control" required="" value="{{ !empty($slider) ? data_get($slider, 'img') : '' }}">
+                                <input type="file" name="img" class="form-control" required="" value="{{ isset($slider) ? data_get($slider, 'img') : '' }}">
                                 <!-- <div class="error" id="password_error"></div> -->
                             </div>
                             <div class="form-group">
                                 <label>Trạng thái </label>
                                 <select name="status" class="form-control">
-                                    <option value="1" @if(data_get($slider, 'status') == 1) selected @endif>Hoạt động</option>
-                                    <option value="0" @if(data_get($slider, 'status') == 0) selected @endif>Ngừng hoạt động</option>
+                                    <option value="1" @if(isset($slider) && data_get($slider, 'status') == 1) selected @endif>Hoạt động</option>
+                                    <option value="0" @if(isset($slider) && data_get($slider, 'status') == 0) selected @endif>Ngừng hoạt động</option>
                                     {{-- @if(isset($slider) && data_get($slider, 'status') == 1)
                                         <option value="1">Hoạt động</option>
                                     @else

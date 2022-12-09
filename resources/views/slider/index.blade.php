@@ -13,7 +13,7 @@
         <a class="btn btn-primary btn-sm" href="{{ route('slider.create') }}" role="button">
             <span class="glyphicon glyphicon-plus"></span> Thêm mới
         </a>
-        <a class="btn btn-primary btn-sm" href="admin/sliders/recyclebin" role="button">
+        <a class="btn btn-primary btn-sm" href="{{ route('slider.recyclebin') }}" role="button">
             <span class="glyphicon glyphicon-trash"></span> Thùng rác()
         </a>
     </div>
@@ -108,7 +108,7 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="btn btn-danger btn-xs" href="javascript:void(0)" id="delete_slider" data-url="{{ route('slider.delete', ['id' => data_get($slider, 'id')]) }}" onclick="return confirm('Xác nhận xóa slider này ?')" role = "button">
+                                                <a class="btn btn-danger btn-xs" href="javascript:void(0)" id="sort_delete" data-url="{{ route('slider.delete', ['id' => data_get($slider, 'id')]) }}" onclick="return confirm('Xác nhận xóa slider này ?')" role = "button">
                                                     <span class="glyphicon glyphicon-trash"></span>Xóa
                                                 </a>
                                             </td>
@@ -134,10 +134,16 @@
     </section>
 @endsection
 
+@section('modal-dialog')
+    @component('modal.modal-confirm', ['html_id' => 'modal-layout'])
+        <span>Thành công</span>
+    @endcomponent
+@endsection
+
 @push('js')
     <script type="text/javascript">
         $(document).ready(function () {
-            $(document).on('click', '#delete_slider', function (){
+            $(document).on('click', '#sort_delete', function (){
                 var url = $(this).data('url');
                 if (url) {
                     $.ajax({

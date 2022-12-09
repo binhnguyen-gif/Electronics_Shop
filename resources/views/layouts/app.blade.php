@@ -65,6 +65,10 @@
         @endif
 
     </div>
+
+    @yield('modal-dialog')
+    @stack('modal-dialog')
+
     <!-- jQuery 2.2.3 -->
     {{-- <script src="{{ asset("assets/js/jquery-2.2.3.min.js") }}"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js" integrity="sha512-xTUUixz5iuBWnqBiM+zHpfoyU6gDpElnKG/QcA1SxLvy/jtfXEBjMKvKASxQdp/empqfJFWczQ2S9cotlKXT7g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
