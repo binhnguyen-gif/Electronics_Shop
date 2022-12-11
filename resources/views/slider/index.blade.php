@@ -14,7 +14,7 @@
             <span class="glyphicon glyphicon-plus"></span> Thêm mới
         </a>
         <a class="btn btn-primary btn-sm" href="{{ route('slider.recyclebin') }}" role="button">
-            <span class="glyphicon glyphicon-trash"></span> Thùng rác()
+            <span class="glyphicon glyphicon-trash"></span> Thùng rác({{ $total_trash ?? '' }})
         </a>
     </div>
 @endsection
@@ -86,7 +86,7 @@
                                             </td>
                                         </tr>
                                     <?php endforeach; ?> --}}
-                                    @foreach($sliders as $slider)
+                                    @foreach($data as $slider)
                                     <tr>
                                             <td class="text-center">{{ data_get($slider, 'id') }}</td>
                                             <td style="width:100px">
@@ -119,8 +119,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    {{-- {{ $paginator->appends($_GET)->links() }} --}}
-                                    {{ $sliders->links() }}
+                                     {{-- @php
+                                        var_dump($_GET);die();
+                                    @endphp --}}
+                                    {{ $paginator->appends($_GET)->links() }}
                                 </div>
                             </div>
                             <!-- /.ND -->
@@ -134,11 +136,11 @@
     </section>
 @endsection
 
-@section('modal-dialog')
+{{-- @section('modal-dialog')
     @component('modal.modal-confirm', ['html_id' => 'modal-layout'])
         <span>Thành công</span>
     @endcomponent
-@endsection
+@endsection --}}
 
 @push('js')
     <script type="text/javascript">

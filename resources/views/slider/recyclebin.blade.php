@@ -98,7 +98,7 @@
                         method: 'DELETE',
                         url: url,
                         // enctype: 'multipart/form-data',
-                        // data: formData,
+                        // data: {id : },
                         // contentType: false,
                         // processData: false,
                         success: function () {

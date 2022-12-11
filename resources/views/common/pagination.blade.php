@@ -1,36 +1,50 @@
+@php
+    $listUrl = $paginator->getUrlRange(1,$paginator->lastPage());
+    $fisrtNumber = 1;
+    $endNumber = $fisrtNumber - 1;
+    $range = 4;
+    $dot = $range + 1;
+     // dd($paginator) 
+@endphp
+
 <ul class="pagination">
     <li class="hidden-xs">
-        <a>
+        <a href="{{ $paginator->url(1) }}">
             Trang đầu
         </a>
     </li>
     <li>
-        <a>
-            Trước
-        </a>
+        @if (!$paginator->onFirstPage())
+            <a href="{{ $paginator->previousPageUrl() }}">
+                Trước
+            </a>
+        @endif
     </li>
-    <li class="active">
-        <a>
-            1
-        </a>
-    </li>
+    @foreach($listUrl as $keyUrl => $valUrl)
+        @if($keyUrl <= $fisrtNumber || ($keyUrl >= $paginator->currentPage() - $range && $keyUrl <= $paginator->currentPage() + $range) || $keyUrl >= $paginator->lastPage() - $endNumber)
+            @if($keyUrl == $paginator->currentPage())
+                <li class="active">
+                    <a class="page" href="javascript:void(0)">{{ $keyUrl }}</a>
+                </li>
+            @else
+            <li class="">
+                <a class="page" href="{{ $paginator->url($keyUrl) }}">{{ $keyUrl }}</a>
+            </li>
+            @endif
+        @elseif($keyUrl == $paginator->currentPage() - $dot || $keyUrl == $paginator->currentPage() + $dot)
+            <span class="extend">...</span>
+        @endif
+    @endforeach
+
     <li>
-        <a href="admin/product/2">
-            2
-        </a>
-    </li>
-    <li>
-        <a href="admin/product/3">
-            3
-        </a>
-    </li>
-    <li>
-        <a href="admin/product/2">
-            Sau
-        </a>
+        @if ($paginator->hasMorePages())
+            <a href="{{ $paginator->nextPageUrl() }}">
+                Sau
+            </a>
+        @endif
     </li>
     <li class="hidden-xs">
-        <a href="admin/product/3">
+        <a href="{{ $paginator->url($paginator->lastPage()) }}">
             Trang cuối
         </a>
     </li>

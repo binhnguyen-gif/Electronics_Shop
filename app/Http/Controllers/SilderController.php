@@ -15,13 +15,21 @@ use Log;
 class SilderController extends Controller
 {
     public function index() {
-        $sliders = Slider::query()->paginate(5);
-        // $paginator = new Paginator(data_get($sliders, 'items', []),
-        // data_get($sliders, 'total', 0),
-        // data_get($sliders, 'per_page', '10'),
-        // data_get($sliders, 'current_page', $page),
-        // ['path' => $route]);
-        return view('slider.index', compact('sliders'));
+        $response = Slider::query()->paginate(3);
+        $total_trash = Slider::onlyTrashed()->count();
+        $response = json_encode($response);
+        $response = json_decode($response);
+
+        $route = route('slider.index');
+        $data = data_get($response, 'data', []);
+        $paginator = new Paginator(
+            $response->data,
+            $response->total,
+            $response->per_page,
+            // $page,
+            $response->current_page,
+            ['path' => $route]);
+        return view('slider.index', compact('data', 'paginator', 'total_trash'));
     }
 
     public function create(Request $request) {
@@ -102,7 +110,7 @@ class SilderController extends Controller
 
     public function recyclebin()
     {
-        $recyclebin = Slider::onlyTrashed()->paginate(5);
+        $recyclebin = Slider::onlyTrashed()->paginate(3);
         return view('slider.recyclebin', compact('recyclebin'));
     }
 
