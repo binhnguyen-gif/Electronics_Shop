@@ -2,7 +2,7 @@
 
 @php
     $isUpdate = isset($id) ? true : false;
-    $routeSubmit = isset($id) ? route('slider.update', $id) : route('slider.store');
+    $routeSubmit = isset($id) ? route('sliders.update', $id) : route('sliders.store');
 @endphp
 
 @section('page-title')
@@ -12,7 +12,7 @@
             <button name="THEM_NEW" id="btn_slider" class="btn btn-primary btn-sm">
                 <span class="glyphicon glyphicon-floppy-save"></span> Lưu[Thêm]
             </button>
-            <a class="btn btn-primary btn-sm" href="{{ route('slider.index') }}" role="button">
+            <a class="btn btn-primary btn-sm" href="{{ route('sliders.index') }}" role="button">
                 <span class="glyphicon glyphicon-remove"></span> Thoát
             </a>
         </div>

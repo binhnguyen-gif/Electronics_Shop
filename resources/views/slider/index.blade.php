@@ -10,10 +10,10 @@
         </a>';
         }
         ?> --}}
-        <a class="btn btn-primary btn-sm" href="{{ route('slider.create') }}" role="button">
+        <a class="btn btn-primary btn-sm" href="{{ route('sliders.create') }}" role="button">
             <span class="glyphicon glyphicon-plus"></span> Thêm mới
         </a>
-        <a class="btn btn-primary btn-sm" href="{{ route('slider.recyclebin') }}" role="button">
+        <a class="btn btn-primary btn-sm" href="{{ route('sliders.recyclebin') }}" role="button">
             <span class="glyphicon glyphicon-trash"></span> Thùng rác({{ $total_trash ?? '' }})
         </a>
     </div>
@@ -92,7 +92,7 @@
                                             <td style="width:100px">
                                                 <img src="{{ asset('storage') . '/upload/' . data_get($slider, 'img') }}" class="img-responsive">
                                             </td>
-                                            <td><a href="{{ route('slider.show', ['id' => data_get($slider, 'id')]) }}">{{ data_get($slider, 'name') }}</a>
+                                            <td><a href="{{ route('sliders.show', ['id' => data_get($slider, 'id')]) }}">{{ data_get($slider, 'name') }}</a>
                                             </td>
                                             <td>{{ data_get($slider, 'slug') }}</td>
                                             <td class="text-center">
@@ -103,12 +103,12 @@
                                                 @endif
                                             </td>
                                                 <td class="text-center">
-                                                <a class="btn btn-success btn-xs" href="{{ route('slider.show', ['id' => data_get($slider, 'id')]) }}" role = "button">
+                                                <a class="btn btn-success btn-xs" href="{{ route('sliders.show', ['id' => data_get($slider, 'id')]) }}" role = "button">
                                                     <span class="glyphicon glyphicon-edit"></span>Sửa
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="btn btn-danger btn-xs" href="javascript:void(0)" id="sort_delete" data-url="{{ route('slider.delete', ['id' => data_get($slider, 'id')]) }}" onclick="return confirm('Xác nhận xóa slider này ?')" role = "button">
+                                                <a class="btn btn-danger btn-xs" href="javascript:void(0)" id="sort_delete" data-url="{{ route('sliders.delete', ['id' => data_get($slider, 'id')]) }}" onclick="return confirm('Xác nhận xóa slider này ?')" role = "button">
                                                     <span class="glyphicon glyphicon-trash"></span>Xóa
                                                 </a>
                                             </td>
@@ -122,7 +122,8 @@
                                      {{-- @php
                                         var_dump($_GET);die();
                                     @endphp --}}
-                                    {{ $paginator->appends($_GET)->links() }}
+                                    {{-- {{ $paginator->appends($_GET)->links() }} --}}
+                                    {{ $paginator->appends($_GET)->onEachSide(5)->links() }}
                                 </div>
                             </div>
                             <!-- /.ND -->

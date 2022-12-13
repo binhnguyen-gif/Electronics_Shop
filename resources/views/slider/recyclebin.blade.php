@@ -3,7 +3,7 @@
 @section('page-title')
 	<h1><i class="glyphicon glyphicon-picture"></i> Thùng rác sliders</h1>
 	<div class="breadcrumb">
-		<a class="btn btn-primary btn-sm" href="{{ route('slider.index') }}" role="button">
+		<a class="btn btn-primary btn-sm" href="{{ route('sliders.index') }}" role="button">
 			<span class="glyphicon glyphicon-remove do_nos"></span> Thoát
 		</a>
 	</div>
@@ -55,12 +55,12 @@
 												<td>{{ data_get($value, 'name') }}</td>
 												<td>{{ data_get($value, 'slug') }}</td>
 												<td class="text-center">
-													<a class="btn btn-success btn-xs" id="restore" href="javascript:void(0)" data-url="{{ route('slider.restore', ['id' => data_get($value, 'id')]) }}" role = "button">
+													<a class="btn btn-success btn-xs" id="restore" href="javascript:void(0)" data-url="{{ route('sliders.restore', ['id' => data_get($value, 'id')]) }}" role = "button">
 														<span class="glyphicon glyphicon-edit"></span>Khôi phục
 													</a>
 												</td>
 												<td class="text-center">
-													<a class="btn btn-danger btn-xs" href="javascript:void(0)" data-url="{{ route('slider.forever-delete', ['id' => data_get($value, 'id')]) }}" role = "button" id="forever_delete">
+													<a class="btn btn-danger btn-xs" href="javascript:void(0)" data-url="{{ route('sliders.forever_delete', ['id' => data_get($value, 'id')]) }}" role = "button" id="forever_delete">
 														<span class="glyphicon glyphicon-trash"></span>Xóa VV
 													</a>
 												</td>
