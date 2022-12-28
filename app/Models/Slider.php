@@ -11,6 +11,5 @@ class Slider extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name', 'slug', 'img', 'trash', 'status'];
-    // PostModel::withTrashed()->where('id', 1)->restore();
-    // PostModel::withTrashed()->where('id', 1)->forceDelete();
+
 }

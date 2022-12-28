@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'sliders', 'as' => 'sliders.'], function() {
+Route::group(['prefix' => 'sliders', 'as' => 'sliders.'], function () {
     Route::get('/', [SilderController::class, 'index'])->name('index');
     Route::get('/create', [SilderController::class, 'create'])->name('create');
     Route::post('/create', [SilderController::class, 'store'])->name('store');

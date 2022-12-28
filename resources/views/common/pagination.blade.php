@@ -4,7 +4,7 @@
     $endNumber = $fisrtNumber - 1;
     $range = 4;
     $dot = $range + 1;
-     // dd($paginator) 
+     // dd($paginator)
 @endphp
 
 <ul class="pagination">
@@ -27,9 +27,9 @@
                     <a class="page" href="javascript:void(0)">{{ $keyUrl }}</a>
                 </li>
             @else
-            <li class="">
-                <a class="page" href="{{ $paginator->url($keyUrl) }}">{{ $keyUrl }}</a>
-            </li>
+                <li class="">
+                    <a class="page" href="{{ $paginator->url($keyUrl) }}">{{ $keyUrl }}</a>
+                </li>
             @endif
         @elseif($keyUrl == $paginator->currentPage() - $dot || $keyUrl == $paginator->currentPage() + $dot)
             <span class="extend">...</span>
