@@ -9,47 +9,60 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Illuminate\Support\Str;
+use App\Services\UploadImage;
 use DB;
 use Log;
 
 class SilderController extends Controller
 {
-    public function index() {
-        $sliders = Slider::query()->paginate(5);
-        // $paginator = new Paginator(data_get($sliders, 'items', []),
-        // data_get($sliders, 'total', 0),
-        // data_get($sliders, 'per_page', '10'),
-        // data_get($sliders, 'current_page', $page),
-        // ['path' => $route]);
-        return view('slider.index', compact('sliders'));
+    private $uploadImage;
+
+    public function __construct(UploadImage $uploadImage)
+    {
+        $this->uploadImage = $uploadImage;
     }
 
-    public function create(Request $request) {
+    public function index()
+    {
+        $response = Slider::query()->paginate(8);
+        $total_trash = Slider::onlyTrashed()->count();
+        $response = json_encode($response);
+        $response = json_decode($response);
+
+        $route = route('sliders.index');
+        $data = data_get($response, 'data', []);
+        $paginator = new Paginator(
+            $response->data,
+            $response->total,
+            $response->per_page,
+            // $page,
+            $response->current_page,
+            ['path' => $route]);
+        return view('slider.index', compact('data', 'paginator', 'total_trash'));
+    }
+
+    public function create(Request $request)
+    {
         return view('slider.create_update');
     }
-   
-    public function store(Request $request) {
-        DB::beginTransaction();
+
+    public function store(Request $request)
+    {
         try {
+            DB::beginTransaction();
             $slider = new Slider();
             $slider->name = $request->name;
             $slider->slug = Str::slug($request->name);
             $slider->status = $request->status;
-            if ($request->hasFile('img')) {
-                $file = $request->file('img');
-                $fileName = uniqid(). '_' . $file->getClientOriginalName();
-                $folderImg = 'upload';
-                $uploadImg = Storage::disk('public')->putFileAs($folderImg, $file, $fileName);
-                $slider->img = $fileName;
-            }
+            $fileName = $this->uploadImage->handleUploadedImage($request->file('img'));
+            $slider->img = $fileName;
             $slider->save();
             DB::commit();
-            return redirect()->route('slider.index');
-        }
-        catch(\Exception $e){
+            return redirect()->route('sliders.index');
+        } catch (\Exception $e) {
             dd($e->getMessage());
             DB::rollback();
-            Log::error('Error upload database'. $e->getMessage());
+            Log::error('Error upload database'.$e->getMessage());
         }
     }
 
@@ -61,48 +74,41 @@ class SilderController extends Controller
 
     public function update(Request $request, $id)
     {
-        DB::beginTransaction();
         try {
+            DB::beginTransaction();
             $slider = Slider::where('id', $id)->first();
             $slider->name = $request->name;
             $slider->slug = Str::slug($request->name);
             $slider->status = $request->status;
-            if ($request->hasFile('img')) {
-                $folderImg = 'upload';
-                Storage::disk('public')->delete($folderImg . '/' . data_get($slider, 'img'));
-                $file = $request->file('img');
-                $fileName = uniqid(). '_' . $file->getClientOriginalName();
-                $uploadImg = Storage::disk('public')->putFileAs($folderImg, $file, $fileName);
-                $slider->img = $fileName;
-            }
+            $fileName = $this->uploadImage->handleUploadedImage($request->file('img'));
+            $slider->img = $fileName;
             $slider->save();
             DB::commit();
-            return redirect()->route('slider.index');
-        }
-        catch(\Exception $e){
+            return redirect()->route('sliders.index');
+        } catch (\Exception $e) {
             dd($e->getMessage());
             DB::rollback();
-            Log::error('Error upload database'. $e->getMessage());
+            Log::error('Error upload database'.$e->getMessage());
         }
     }
 
     public function delete($id)
     {
         try {
+            DB::beginTransaction();
             $slider = Slider::find($id);
             $slider->delete();
             DB::commit();
             return response()->json(['status' => 200, 'msg' => false, 'data' => []]);
-        } 
-        catch (Exception $e) {
+        } catch (Exception $e) {
             DB::rollback();
-            Log::error('Error delete slider' . $e->getMessage());
+            Log::error('Error delete slider'.$e->getMessage());
         }
     }
 
     public function recyclebin()
     {
-        $recyclebin = Slider::onlyTrashed()->paginate(5);
+        $recyclebin = Slider::onlyTrashed()->paginate(8);
         return view('slider.recyclebin', compact('recyclebin'));
     }
 
@@ -119,5 +125,5 @@ class SilderController extends Controller
         // return back()->with('success', true);
         return response()->json(['status' => 200, 'msg' => false, 'data' => []]);
     }
-   
+
 }

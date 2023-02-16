@@ -1,77 +1,83 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<html lang="">
+<head>
+    <base href=""></base>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hệ thống quản lý cơ sở dữ liệu</title>
+    <link rel="shortcut icon" href="{{ asset('assets/images/templates/favicon.png') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <!-- jQuery -->
+    <script src="{{ asset('assets/js/jquery-2.2.3.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+</head>
+<body>
+<div class="container khung">
+    <div class="title">
+        <h2 class="text-center" style="color:#337ab7">Smart Store</h2>
     </div>
+    <hr>
+    <div class="myform">
+        <form method="POST" action="{{ route('register') }}" role="form">
+            @csrf
+            <div class="row form-row">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Tên đăng nhập" required>
+                </div>
+                @error('name')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+
+            </div>
+            <div class="row form-row">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email..." required>
+
+                </div>
+                @error('email')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="row form-row">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Mật khẩu" required>
+
+                </div>
+                @error('password')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="row form-row">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input type="password" name="password_confirmation" id="password-confirm" class="form-control" placeholder="Nhập lại mật khẩu" required>
+                </div>
+                @error('password_confirmation')
+                <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="row form-row" style="width:100%; margin-top: 15px;">
+                <button type="submit" class="form-control btn btn-primary btn-login">Đăng ký</button>
+            </div>
+            @if(session()->has('error'))
+                <div class="row">
+                    <div class="alert alert-danger">
+                        <span>{{ session('error') }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    </div>
+                </div>
+            @endif
+        </form>
+    </div>
+    <hr>
 </div>
-@endsection
+
+@include('common.footer')
+</body>
+</html>
+

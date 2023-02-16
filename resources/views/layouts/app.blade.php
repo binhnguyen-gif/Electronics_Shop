@@ -43,46 +43,48 @@
     </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-        @if(empty($disableHeaderAndFooter))
-            @include('common.header')
-        @endif
+<div class="wrapper">
+    @if(empty($disableHeaderAndFooter))
+        @include('common.header')
+    @endif
 
-        @if(empty($disableHeaderAndMenu))
-            @include('common.menu')
-        @endif
+    @if(empty($disableHeaderAndMenu))
+        @include('common.menu')
+    @endif
 
-        <div class="content-wrapper">
-            <section class="content-header">
-                 @yield('page-title')
-            </section>
-            <!-- content -->
-            @yield('content')
-        </div>
-
-        @if(empty($disableHeaderAndFooter))
-            @include('common.footer')
-        @endif
-
+    <div class="content-wrapper">
+        <section class="content-header">
+            @yield('page-title')
+        </section>
+        <!-- content -->
+        @yield('content')
     </div>
 
-    @yield('modal-dialog')
-    @stack('modal-dialog')
+    @if(empty($disableHeaderAndFooter))
+        @include('common.footer')
+    @endif
 
-    <!-- jQuery 2.2.3 -->
-    {{-- <script src="{{ asset("assets/js/jquery-2.2.3.min.js") }}"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js" integrity="sha512-xTUUixz5iuBWnqBiM+zHpfoyU6gDpElnKG/QcA1SxLvy/jtfXEBjMKvKASxQdp/empqfJFWczQ2S9cotlKXT7g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Bootstrap 3.3.6 -->
-    <script src="{{ asset("assets/js/bootstrap.js") }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset("assets/js/app.min.js") }}"></script>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
-    @stack('js')
+</div>
+
+@yield('modal-dialog')
+@stack('modal-dialog')
+
+<!-- jQuery 2.2.3 -->
+{{-- <script src="{{ asset("assets/js/jquery-2.2.3.min.js") }}"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"
+        integrity="sha512-xTUUixz5iuBWnqBiM+zHpfoyU6gDpElnKG/QcA1SxLvy/jtfXEBjMKvKASxQdp/empqfJFWczQ2S9cotlKXT7g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{{ asset("assets/js/bootstrap.js") }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset("assets/js/app.min.js") }}"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+@stack('js')
 </body>
 </html>
