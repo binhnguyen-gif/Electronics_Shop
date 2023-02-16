@@ -70,7 +70,10 @@
                     </li>
                 </ul>
             </li>
-            <li><a href="admin/user/logout.html"><i class="fa fa-sign-out text-red"></i> <span>Thoát</span></a></li>
+            <li><a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('form_logout').submit();"><i class="fa fa-sign-out text-red"></i> <span>Thoát</span></a></li>
+            <form action="{{ route('logout') }}" method="POST" id="form_logout">
+                @csrf
+            </form>
         </ul>
     </section>
     <!-- /.sidebar -->

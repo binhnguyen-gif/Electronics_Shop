@@ -55,14 +55,17 @@
                         <li class="user-header">
                             <img src="{{ asset("assets/images/admin/403ceb0ed6fdb72494bbd2ac39182b04.png") }}"
                                  class="img-circle" alt="User Image">
-                            <p></small></p>
+                            <p><small></small></p>
                         </li>
                         <li class="user-footer">
                             <div class="pull-left">
                                 <a href="" class="btn btn-default btn-flat">Chi tiết</a>
                             </div>
                             <div class="pull-right">
-                                <a href="admin/user/logout.html" class="btn btn-default btn-flat">Thoát</a>
+                                <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('form_logout').submit();" class="btn btn-default btn-flat">Thoát</a>
+                                <form action="{{ route('logout') }}" method="POST" id="form_logout">
+                                    @csrf
+                                </form>
                             </div>
                         </li>
                     </ul>
@@ -71,3 +74,4 @@
         </div>
     </nav>
 </header>
+

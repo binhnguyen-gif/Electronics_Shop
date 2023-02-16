@@ -8,7 +8,7 @@ class UploadImage {
 	public function handleUploadedImage($file)
 	{
 		if (!is_null($file)) {
-            $fileName = uniqid(). '_' . $file->getClientOriginalName();
+            $fileName = time(). '_' . $file->getClientOriginalName();
             $folderImg = 'upload';
             Storage::disk('public')->putFileAs($folderImg, $file, $fileName);
             return $fileName;
