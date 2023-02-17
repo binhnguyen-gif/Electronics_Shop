@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Slider;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class OrderController extends Controller
 {
     //
     public function index()
     {
-         return view('customer.index');
+        return view('orders.index');
     }
 }

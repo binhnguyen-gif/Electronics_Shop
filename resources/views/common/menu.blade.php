@@ -14,38 +14,38 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="">
+                <a href="{{ route('products.index') }}">
                     <i class="fa fa-leaf"></i><span>Sản phẩm</span>
                 </a>
             </li>
             <li class="treeview">
-                <a href="">
+                <a href="{{ route('category.index') }}">
                     <i class="fa fa-indent"></i><span>Loại sản phẩm</span>
                 </a>
             </li>
             <li class="treeview">
-                <a href="">
+                <a href="{{ route('producer.index') }}">
                     <i class="fa fa-gift"></i><span>Nhà cung cấp</span>
                 </a>
             </li>
             <li class="header">QUẢN LÝ BÁN HÀNG</li>
             <li class="treeview">
-                <a href="">
+                <a href="{{ route('coupon.index') }}">
                     <i class="fa fa-diamond"></i> <span>Mã giảm giá</span>
                 </a>
             </li>
             <li class="treeview">
-                <a href="">
+                <a href="{{ route('contact.index') }}">
                     <i class="fa fa-envelope"></i> <span>Liên hệ</span>
                 </a>
             </li>
             <li class="treeview">
-                <a href="">
+                <a href="{{ route('orders.index') }}">
                     <i class="fa fa-shopping-cart"></i> <span>Đơn hàng</span>
                 </a>
             </li>
             <li class="treeview">
-                <a href="">
+                <a href="{{ route('customer.index') }}">
                     <i class="fa fa-user"></i><span>Khách hàng</span>
                 </a>
             </li>
