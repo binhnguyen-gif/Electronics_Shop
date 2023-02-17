@@ -9,6 +9,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProducerController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HomeController as Home;
+use \App\Http\Controllers\Client\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +81,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['checkAuth', 'checkAdmin']],
         Route::get('/create', [CouponController::class, 'create'])->name('create');
     });
 });
+
+//Client
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+Route::get('/set-locale/{language}', 'LanguageController@setLocale')->name('set-locale');
 
 
 
