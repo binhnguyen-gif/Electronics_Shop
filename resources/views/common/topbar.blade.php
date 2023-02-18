@@ -27,11 +27,11 @@
                 </ul>
                 <ul class="nav navbar navbar-nav pull-right" id="nav2">
                     @if(Auth::check())
-                        <li><a href='dang-xuat'>Xin chào: {{ Auth::user()->name }}</a></li>
-                        <li><a href='dang-xuat'>Thoát</a></li>
+                        <li><a href="#">Xin chào: {{ Auth::user()->name }}</a></li>
+                        <li><a href="{{ route('logout') }}">Thoát</a></li>
                     @else
-                        <li><a href='dang-ky'>Đăng ký</a></li>
-                        <li><a href='dang-nhap'>Đăng nhập</a></li>
+                        <li><a href="{{ route('register') }}">Đăng ký</a></li>
+                        <li><a href="{{ route('login') }}">Đăng nhập</a></li>
                     @endif
                 </ul>
             </div>

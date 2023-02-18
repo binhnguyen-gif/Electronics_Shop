@@ -17,7 +17,7 @@ class CheckAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
+        if (!Auth::guard('users')->check()) {
             return redirect('login');
         }
         return $next($request);

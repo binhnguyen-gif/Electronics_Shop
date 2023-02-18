@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
         @yield('title', "Smart Store - Điện thoại, Laptop, Link kiện chính hãng")
     </title>
@@ -36,24 +37,24 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 <!-- TOPBAR -->
-@include('client.common.topbar')
+@include('common.topbar')
 <!-- HEADER LOGO + SEARCH -->
-@include('client.common.logo-search')
-@include('client.common.category')
+@include('common.logo-search')
+@include('common.category')
 <section id="menu-slider">
-    @include('client.common.panel-left')
+    @include('common.panel-left')
 </section>
 <!--CONTENT-->
-{{--        <?php--}}
-{{--            if(isset($com,$view)){--}}
-{{--                $this->load->view('frontend/components/'.$com.'/'.$view);--}}
-{{--            }--}}
-{{--            else--}}
-{{--                $this->load->view('frontend/components/Error404/index');--}}
-{{--        ?>--}}
+@yield('content')
 <!--FOOTER-->
-@include('client.common.footer')
-
+@include('common.footer')
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 <script src="{{ asset("assets/js/bootstrap.js") }}"></script>
 <script src="{{ asset("assets/js/app.min.js") }}"></script>
 <script src="{{ asset("assets/js/owl.carousel.js") }}"></script>
