@@ -17,7 +17,7 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role != config('constants.USER_ROLE.SUPER_ADMIN')) {
+        if (Auth::guard('users')->user()->role != config('constants.USER_ROLE.SUPER_ADMIN')) {
             abort(401);
         }
         return $next($request);

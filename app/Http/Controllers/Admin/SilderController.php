@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Exception;
 use App\Models\Slider;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Pagination\LengthAwarePaginator as Paginator;
-use Illuminate\Support\Str;
 use App\Services\UploadImage;
 use DB;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use Illuminate\Support\Str;
 use Log;
 
 class SilderController extends Controller
@@ -38,12 +37,12 @@ class SilderController extends Controller
             // $page,
             $response->current_page,
             ['path' => $route]);
-        return view('slider.index', compact('data', 'paginator', 'total_trash'));
+        return view('admin.slider.index', compact('data', 'paginator', 'total_trash'));
     }
 
     public function create(Request $request)
     {
-        return view('slider.create_update');
+        return view('admin.slider.create_update');
     }
 
     public function store(Request $request)
@@ -58,7 +57,7 @@ class SilderController extends Controller
             $slider->img = $fileName;
             $slider->save();
             DB::commit();
-            return redirect()->route('sliders.index');
+            return redirect()->route('admin.sliders.index');
         } catch (\Exception $e) {
             dd($e->getMessage());
             DB::rollback();
@@ -84,7 +83,7 @@ class SilderController extends Controller
             $slider->img = $fileName;
             $slider->save();
             DB::commit();
-            return redirect()->route('sliders.index');
+            return redirect()->route('admin.sliders.index');
         } catch (\Exception $e) {
             dd($e->getMessage());
             DB::rollback();
@@ -109,7 +108,7 @@ class SilderController extends Controller
     public function recyclebin()
     {
         $recyclebin = Slider::onlyTrashed()->paginate(8);
-        return view('slider.recyclebin', compact('recyclebin'));
+        return view('admin.slider.recyclebin', compact('recyclebin'));
     }
 
     public function restore($id)

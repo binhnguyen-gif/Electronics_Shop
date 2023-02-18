@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CheckAuth
+class Locale
 {
     /**
      * Handle an incoming request.
@@ -17,9 +16,14 @@ class CheckAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::guard('users')->check()) {
-            return redirect('login');
+        $lang = session()->get('lang');
+        if (in_array($lang, config('app.locales'))) {
+            $locale = $lang;
+        } else {
+            $locale = config('app.locale');
         }
+        app()->setLocale($locale);
+
         return $next($request);
     }
 }
