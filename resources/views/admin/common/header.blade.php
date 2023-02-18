@@ -63,7 +63,7 @@
                             </div>
                             <div class="pull-right">
                                 <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('form_logout').submit();" class="btn btn-default btn-flat">Thoát</a>
-                                <form action="{{ route('logout') }}" method="POST" id="form_logout">
+                                <form action="{{ route('admin.logout') }}" method="POST" id="form_logout">
                                     @csrf
                                 </form>
                             </div>

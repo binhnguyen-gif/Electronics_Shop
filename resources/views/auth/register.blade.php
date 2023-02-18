@@ -1,5 +1,13 @@
 @extends('layouts.index')
 
+@push('css')
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+@endpush
+
 @section('content')
     <section id="product-detail">
         <div class="container">
@@ -13,55 +21,66 @@
                                 <h4 style="color:green;">{{ session()->get('success') }}</h4>
                             @endif
                             <div class="acc_content clearfix" style="display: block;">
-                                <form accept-charset="UTF-8" action="" id="customer_register" method="post">
-
-                                    <input name="FormType" type="hidden" value="customer_register">
-                                    <input name="utf8" type="hidden" value="true">
+                                <form action="{{ route('register') }}" id="customer_register" method="post">
+                                    @csrf
                                     <div class="col_full">
                                         <label for="first_name">Tên đăng nhập:<span
                                                 class="require_symbol">*</span></label>
-                                        <input type="text" id="first_name" name="username" value="" class="form-control"
+                                        <input type="text" id="first_name" name="name" value="" class="form-control"
                                                placeholder="Tên đăng nhập">
-                                        <div class="error" id="username_error"></div>
+                                        @error('name')
+                                        <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col_full">
                                         <label for="register-form-password">Mật khẩu:<span
                                                 class="require_symbol">*</span></label>
                                         <input type="password" id="register-form-password" name="password"
                                                placeholder="Mật khẩu" class="form-control">
-                                        <div class="error" id="password_error"></div>
+                                        @error('password')
+                                        <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="col_full">
                                         <label for="register-form-repassword">Nhập lại mật khẩu:<span
                                                 class="require_symbol">* </span></label>
-                                        <input type="password" id="register-form-repassword" name="re_password" value=""
+                                        <input type="password" id="register-form-repassword"
+                                               name="password_confirmation" value=""
                                                class="form-control" placeholder="Nhập lại mật khẩu">
-                                        <div class="error" id="re_password_error"></div>
+                                        @error('password-confirmation')
+                                        <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col_full">
                                         <label for="first_name">Họ tên:<span class="require_symbol">*</span></label>
-                                        <input type="text" id="first_name" name="name" placeholder="Họ tên"
+                                        <input type="text" id="first_name" name="fullname" placeholder="Họ tên"
                                                class="form-control">
-                                        <div class="error" id="name_error"></div>
+                                        @error('fullname')
+                                        <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col_full">
                                         <label for="register-form-email">Email:<span
                                                 class="require_symbol">*</span></label>
-                                        <input type="text" id="register-form-email" name="email" class="form-control"
+                                        <input type="email" id="register-form-email" name="email" class="form-control"
                                                placeholder="Nhập email">
-                                        <div class="error" id="email_error"></div>
+                                        @error('email')
+                                        <div class="error" >{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col_full">
                                         <label for="first_name">Số điện thoại:<span
                                                 class="require_symbol">*</span></label>
                                         <input type="text" id="first_name" name="phone" placeholder="Số điện thoại"
                                                class="form-control">
-                                        <div class="error" id="name_error"></div>
+                                        @error('phone')
+                                        <div class="error" >{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="col_full nobottommargin">
-                                        <button class="button button-3d button-black nomargin" id="register-form-submit"
-                                                name="register-form-submit" type="submit" style="margin-bottom: 20px">
+                                        <button type="submit" class="button button-3d button-black nomargin"
+                                                style="margin-bottom: 20px">
                                             Đăng
                                             ký
                                         </button>
