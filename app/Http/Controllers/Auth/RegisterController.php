@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+//use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -52,11 +53,12 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-//        dd($data);
         return Validator::make($data, [
+            'fullname' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required', 'string', 'max:12'],
         ]);
     }
 
@@ -68,14 +70,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
+        $customer = Customer::create([
+            'fullname' => $data['fullname'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
         ]);
 
         Mail::to($data['email'])->send(new SendAccountInformation($data));
 
-        return $user;
+        return $customer;
     }
 }

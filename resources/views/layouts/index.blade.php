@@ -22,7 +22,7 @@
     <link href="{{ asset("assets/css/style.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/css/jquery.bxslider.css") }}" rel="stylesheet">
     <link href="{{ asset("assets/css/flexslider.css") }}" rel="stylesheet">
-
+    @stack('css')
     <script src="{{ asset("assets/js/jquery-2.2.3.min.js") }}"></script>
 </head>
 <body>

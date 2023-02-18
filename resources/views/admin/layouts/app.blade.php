@@ -45,11 +45,11 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     @if(empty($disableHeaderAndFooter))
-        @include('common.header')
+        @include('admin.common.header')
     @endif
 
     @if(empty($disableHeaderAndMenu))
-        @include('common.menu')
+        @include('admin.common.menu')
     @endif
 
     <div class="content-wrapper">
@@ -61,7 +61,7 @@
     </div>
 
     @if(empty($disableHeaderAndFooter))
-        @include('common.footer')
+        @include('admin.common.footer')
     @endif
 
 </div>

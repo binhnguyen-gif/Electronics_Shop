@@ -17,15 +17,17 @@
     </div>
     <hr>
     <div class="myform">
-        <form method="POST" action="{{ route('login') }}" role="form">
+        <form method="POST" action="{{ route('admin.login') }}" role="form">
             @csrf
             <div class="row form-row">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <input type="email" name="email" class="form-control" placeholder="Tên đăng nhập">
+                    <input type="email" name="email" class="form-control" placeholder="Tên tài khoản">
 
                 </div>
-                <div class="error" id="password_error"></div>
+                @error('name')
+                    <div class="error">{{ $message }}</div>
+                @enderror
             </div>
             <div class="row form-row">
                 <div class="input-group">
@@ -33,14 +35,17 @@
                     <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
 
                 </div>
-                <div class="error" id="password_error"></div>
+                @error('password')
+                <div class="error">{{ $message }}</div>
+                @enderror
             </div>
             <div class="row form-row" style="width:100%; margin-top: 15px;">
                 <button type="submit" class="form-control btn btn-primary btn-login">Đăng nhập</button>
             </div>
-            @if(session('error'))
+            @if(session()->has('message'))
                 <div class="row">
                     <div class="alert alert-danger">
+                        {{ session()->get('$message') }}
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     </div>
                 </div>

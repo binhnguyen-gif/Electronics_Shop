@@ -17,8 +17,9 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('users')->user()->role != config('constants.USER_ROLE.SUPER_ADMIN')) {
-            abort(401);
+        $user = Auth::guard('users')->user();
+        if (!isset($user) || $user->role != config('constants.USER_ROLE.SUPER_ADMIN')) {
+            return redirect()->route('admin.login');
         }
         return $next($request);
     }

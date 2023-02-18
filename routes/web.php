@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SilderController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,15 +27,16 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
-    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-    Route::post('/register', [RegisterController::class, 'register']);
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('show_login_form');
+    Route::post('/login', [LoginController::class, 'login'])->name('login');
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('show_registration_form');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::group(['middleware' => ['checkAuth', 'checkAdmin']], function (){
+    Route::group(['middleware' => ['checkAdmin']], function () {
         Route::get('/', function () {
-            return view('dashboard.index');
-        });
+            return view('admin.dashboard.index');
+        })->name('dashboard');
 
 
         Route::group(['prefix' => 'sliders', 'as' => 'sliders.'], function () {
@@ -84,13 +86,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('/create', [CouponController::class, 'create'])->name('create');
         });
     });
-
 });
 
 //Client
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/set-locale/{language}', 'LanguageController@setLocale')->name('set-locale');
+Route::get('/set-locale/{language}', [LanguageController::class, 'setLocale'])->name('set-locale');
 
 
 

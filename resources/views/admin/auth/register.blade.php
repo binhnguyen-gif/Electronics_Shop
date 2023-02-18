@@ -20,7 +20,7 @@
     </div>
     <hr>
     <div class="myform">
-        <form method="POST" action="{{ route('register') }}" role="form">
+        <form method="POST" action="{{ route('admin.register') }}" role="form">
             @csrf
             <div class="row form-row">
                 <div class="input-group">
