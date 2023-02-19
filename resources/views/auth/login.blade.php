@@ -14,16 +14,18 @@
                                 <div class="col_full">
                                     <label for="login-form-username">Tài khoản:<span
                                             class="require_symbol">* </span></label>
-                                    <input type="text" id="login-form-username" name="name" value=""
-                                           class="form-control">
-                                    <div class="error" id="password_error"></div>
+                                    <input type="text" name="name" value="" class="form-control">
+                                    @error('name')
+                                    <div class="error">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col_full">
                                     <label for="login-form-password">Mật khẩu:<span
                                             class="require_symbol">* </span></label>
-                                    <input type="password" id="login-form-password" name="password" value=""
-                                           class="form-control">
-                                    <div class="error" id="password_error"></div>
+                                    <input type="password" name="password" value="" class="form-control">
+                                    @error('password')
+                                    <div class="error">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 @if($errors->any())
                                     <div class="row">
@@ -32,8 +34,7 @@
                                 @endif
                                 <div class="col_full nobottommargin">
                                     <button class="button button-3d button-black nomargin pull-left"
-                                            id="login-form-submit"
-                                            name="login-form-submit" type="submit" value="login">Đăng nhập
+                                            type="submit" value="login">Đăng nhập
                                     </button>
                                     <ul class="pull-right">
                                         <li><a href="quen-mat-khau" class="fright">Quên mật khẩu?</a></li>

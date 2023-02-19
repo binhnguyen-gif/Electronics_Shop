@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductOrderTable extends Migration
+class CreateOrderProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -23,7 +23,7 @@ class CreateProductOrderTable extends Migration
             $table->boolean('status');
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('order_id')->references('id')->on('orders'); 
+            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateProductOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_order');
+        Schema::dropIfExists('order_product');
     }
 }
