@@ -16,9 +16,7 @@ class LoginController extends Controller
     }
 
     public function login(AdminLogin $request) {
-//        dd($request->all());
         $credentials = $request->only(['email', 'password']);
-//        dd($credentials);
         if (Auth::guard('users')->attempt($credentials)){
             return redirect()->route('admin.dashboard');
         }

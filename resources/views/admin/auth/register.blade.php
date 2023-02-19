@@ -36,7 +36,6 @@
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                     <input type="email" name="email" id="email" class="form-control" placeholder="Email..." required>
-
                 </div>
                 @error('email')
                 <div class="error">{{ $message }}</div>
@@ -64,10 +63,10 @@
             <div class="row form-row" style="width:100%; margin-top: 15px;">
                 <button type="submit" class="form-control btn btn-primary btn-login">Đăng ký</button>
             </div>
-            @if(session()->has('error'))
+            @if(session()->has('message'))
                 <div class="row">
                     <div class="alert alert-danger">
-                        <span>{{ session('error') }}</span>
+                        <span>{{ session()->get('message') }}</span>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     </div>
                 </div>
