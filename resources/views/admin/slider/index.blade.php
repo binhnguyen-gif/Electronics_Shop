@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("admin.layouts.app")
 
 @section('page-title')
     <h1><i class="glyphicon glyphicon-picture"></i> Quản lý sliders</h1>
@@ -10,10 +10,10 @@
          </a>';
          }
          ?> --}}
-        <a class="btn btn-primary btn-sm" href="{{ route('sliders.create') }}" role="button">
+        <a class="btn btn-primary btn-sm" href="{{ route('admin.sliders.create') }}" role="button">
             <span class="glyphicon glyphicon-plus"></span> Thêm mới
         </a>
-        <a class="btn btn-primary btn-sm" href="{{ route('sliders.recyclebin') }}" role="button">
+        <a class="btn btn-primary btn-sm" href="{{ route('admin.sliders.recyclebin') }}" role="button">
             <span class="glyphicon glyphicon-trash"></span> Thùng rác({{ $total_trash ?? '' }})
         </a>
     </div>
@@ -95,7 +95,7 @@
                                                         class="img-responsive">
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('sliders.show', ['id' => data_get($slider, 'id')]) }}">{{ data_get($slider, 'name') }}</a>
+                                                    <a href="{{ route('admin.sliders.show', ['id' => data_get($slider, 'id')]) }}">{{ data_get($slider, 'name') }}</a>
                                                 </td>
                                                 <td>{{ data_get($slider, 'slug') }}</td>
                                                 <td class="text-center">
@@ -107,7 +107,7 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <a class="btn btn-success btn-xs"
-                                                       href="{{ route('sliders.show', ['id' => data_get($slider, 'id')]) }}"
+                                                       href="{{ route('admin.sliders.show', ['id' => data_get($slider, 'id')]) }}"
                                                        role="button">
                                                         <span class="glyphicon glyphicon-edit"></span>Sửa
                                                     </a>
@@ -115,7 +115,7 @@
                                                 <td class="text-center">
                                                     <a class="btn btn-danger btn-xs" href="javascript:void(0)"
                                                        id="sort_delete"
-                                                       data-url="{{ route('sliders.delete', ['id' => data_get($slider, 'id')]) }}"
+                                                       data-url="{{ route('admin.sliders.delete', ['id' => data_get($slider, 'id')]) }}"
                                                        onclick="return confirm('Xác nhận xóa slider này ?')"
                                                        role="button">
                                                         <span class="glyphicon glyphicon-trash"></span>Xóa

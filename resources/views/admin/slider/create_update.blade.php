@@ -1,8 +1,8 @@
-@extends("layouts.app")
+@extends("admin.layouts.app")
 
 @php
     $isUpdate = isset($id) ? true : false;
-    $routeSubmit = isset($id) ? route('sliders.update', $id) : route('sliders.store');
+    $routeSubmit = isset($id) ? route('admin.sliders.update', $id) : route('admin.sliders.store');
 @endphp
 
 @section('page-title')
@@ -12,7 +12,7 @@
             <button name="THEM_NEW" id="btn_slider" class="btn btn-primary btn-sm">
                 <span class="glyphicon glyphicon-floppy-save"></span> Lưu[Thêm]
             </button>
-            <a class="btn btn-primary btn-sm" href="{{ route('sliders.index') }}" role="button">
+            <a class="btn btn-primary btn-sm" href="{{ route('admin.sliders.index') }}" role="button">
                 <span class="glyphicon glyphicon-remove"></span> Thoát
             </a>
         </div>

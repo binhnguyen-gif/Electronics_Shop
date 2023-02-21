@@ -28,7 +28,7 @@ class SilderController extends Controller
         $response = json_encode($response);
         $response = json_decode($response);
 
-        $route = route('sliders.index');
+        $route = route('admin.sliders.index');
         $data = data_get($response, 'data', []);
         $paginator = new Paginator(
             $response->data,

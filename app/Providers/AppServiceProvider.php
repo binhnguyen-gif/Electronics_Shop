@@ -30,6 +30,6 @@ class AppServiceProvider extends ServiceProvider
         // $this->app->bind(SliderRepositoryInterface::class, SliderRepository::class);
         // $this->app->bind(UploadImage::class);
 
-        Paginator::defaultView('common.pagination');
+        Paginator::defaultView('admin.common.pagination');
     }
 }
