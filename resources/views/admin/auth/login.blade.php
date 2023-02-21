@@ -45,7 +45,7 @@
             @if(session()->has('message'))
                 <div class="row">
                     <div class="alert alert-danger">
-                        {{ session()->get('$message') }}
+                        <span>{{ session()->get('message') }}</span>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     </div>
                 </div>

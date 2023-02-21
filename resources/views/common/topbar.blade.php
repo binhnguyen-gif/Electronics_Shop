@@ -18,7 +18,7 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar navbar-nav" id="nav1">
-                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="{{ route('home') }}">Trang chủ</a></li>
                     <li><a href="san-pham/1">Sản phẩm</a></li>
                     <li><a href="tin-tuc/1">Tin tức</a></li>
                     <li><a href="gioi-thieu">Giới thiệu</a></li>
