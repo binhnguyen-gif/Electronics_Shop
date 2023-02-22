@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRegister;
+use App\Jobs\SendReminderEmail;
 use App\Mail\SendAccountInformation;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -36,8 +37,9 @@ class RegisterController extends Controller
         ];
         $account = User::create($user);
 
-        Mail::to($account['email'])->send(new SendAccountInformation($account));
+//        Mail::to($account['email'])->send(new SendAccountInformation($account));
 
+        $this->dispatch(new SendReminderEmail($account));
         return redirect()->route('admin.show_login_form');
     }
 }
