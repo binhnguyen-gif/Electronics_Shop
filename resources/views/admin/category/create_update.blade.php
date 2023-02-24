@@ -33,7 +33,7 @@
                     <div class="box" id="view">
                         <div class="box-body">
                             <div class="form-group">
-                                <label>Tên danh mục <span class="maudo">(*)</span></label>
+                                <label>{{ __('common.category.category_name') }} <span class="maudo">(*)</span></label>
                                 <input type="text" class="form-control" name="name" style="width:50%"
                                        placeholder="Tên danh mục">
                                 @error('name')
@@ -42,13 +42,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Danh mục cha</label>
-                                <select name="parentid" class="form-control" style="width:50%">
+                                <label>{{ __('common.category.parent') }}</label>
+                                <select name="parent_id" class="form-control" style="width:50%">
                                     <option value="0">[--Chọn danh mục--]</option>
+                                    @foreach($listCategory as $value)
+                                        <option value="{{data_get($value, 'id')}}">{{data_get($value, 'name')}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Sắp xếp</label>
+                                <label>{{ __('common.category.sort') }}</label>
                                 <select name="orders" class="form-control" style="width:50%">
                                     <option value="">[--Chọn vị trí--]</option>
                                     <option value="0">Đứng đầu</option>
@@ -56,12 +59,17 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Trạng thái</label>
+                                <label>{{ __('common.category.status') }}</label>
                                 <select name="status" class="form-control" style="width:50%">
                                     <option value="">[--Chọn trạng thái--]</option>
-                                    <option value="1">Đang kinh doanh</option>
-                                    <option value="0">Ngưng kinh doanh</option>
+                                    <option
+                                        value="{{ config('constants.CATEGORY_STATUS.PROGRESS') }}">{{ __('common.category.progress') }}</option>
+                                    <option
+                                        value="{{ config('constants.CATEGORY_STATUS.STOP') }}">{{ __('common.category.stop') }}</option>
                                 </select>
+                                @error('status')
+                                <div class="error">{{$message}}</div>
+                                @enderror
                             </div>
                         </div>
                     </div><!-- /.box -->

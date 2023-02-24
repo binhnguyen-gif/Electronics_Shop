@@ -95,7 +95,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 //Client
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/set-locale/{language}', [LanguageController::class, 'setLocale'])->name('set-locale');
+Route::get('/set-locale/{language}', [LanguageController::class, 'setLocale'])->name('set_locale');
 
 
 

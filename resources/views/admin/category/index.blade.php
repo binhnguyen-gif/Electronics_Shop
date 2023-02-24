@@ -21,20 +21,20 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <div class="row">
-                            <div class="alert alert-success">
+{{--                        <div class="row">--}}
+{{--                            <div class="alert alert-success">--}}
 
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            </div>
-                        </div>
+{{--                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="row">
-                            <div class="alert alert-error">
-                                <?php
-                                ?>
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            </div>
-                        </div>
+{{--                        <div class="row">--}}
+{{--                            <div class="alert alert-error">--}}
+{{--                                <?php--}}
+{{--                                ?>--}}
+{{--                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="row" style='padding:0px; margin:0px;'>
                             <!--ND-->
@@ -51,36 +51,40 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="text-center"></td>
-                                        <td>
-                                            <a href="admin/category/update/">
-                                            </a>
-                                        </td>
-                                        <td>
+                                    @foreach($listCategory as $value)
+                                        <tr>
+                                            <td class="text-center">{{data_get($value, 'id')}}</td>
+                                            <td>
+                                                <a href="admin/category/update/">
+                                                    {{data_get($value, 'name')}}
+                                                </a>
+                                            </td>
+                                            <td>
 
-                                        </td>
-                                        <td class="text-center">
-                                            <?php
-                                            echo 'created_at' ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="admin/category/status/">
+                                            </td>
+                                            <td class="text-center">
+                                                {{data_get($value, 'created_at')}}
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="admin/category/status/">
+                                                    @if(data_get($value, 'status') == 1)
+                                                        <span class="glyphicon glyphicon-ok-circle mauxanh18"></span>
+                                                    @else
+                                                        <span class="glyphicon glyphicon-remove-circle maudo"></span>
+                                                    @endif
 
-                                                <span class="glyphicon glyphicon-ok-circle mauxanh18"></span>
-                                                <span class="glyphicon glyphicon-remove-circle maudo"></span>
-                                            </a>
-                                        </td>
+                                                </a>
+                                            </td>
 
-                                        <td class="text-center">
-                                            <a class="btn btn-danger btn-xs" href="admin/category/trash/"
-                                               onclick="return confirm('Xác nhận xóa loại sản phẩm này ?')"
-                                               role="button">
-                                                <span class="glyphicon glyphicon-trash"></span>Xóa
-                                            </a>
-                                        </td>
-                                    </tr>
-
+                                            <td class="text-center">
+                                                <a class="btn btn-danger btn-xs" href="admin/category/trash/"
+                                                   onclick="return confirm('Xác nhận xóa loại sản phẩm này ?')"
+                                                   role="button">
+                                                    <span class="glyphicon glyphicon-trash"></span>Xóa
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

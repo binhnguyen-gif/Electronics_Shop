@@ -12,7 +12,7 @@ class CreateFile extends Command
      *
      * @var string
      */
-    protected $signature = 'command:file {filename}';
+    protected $signature = 'make:file {filename}';
 
     /**
      * The console command description.
@@ -40,11 +40,14 @@ class CreateFile extends Command
     {
 //        $folder = $this->argument('folder');
         $filename = $this->argument('filename');
-        $directory = 'app/Repositories';
-        $file_path = $directory . '/' . $filename;
+        $directory1 = 'app/Repositories';
+        $directory2 = 'app/Interfaces';
+        $file_path1 = $directory1 . '/' . $filename . 'Repository.php';
+        $file_path2 = $directory2 . '/' . $filename . 'RepositoryInterface.php';
 
-        if (! File::exists($file_path)) {
-            File::put($file_path, '');
+        if (! File::exists($file_path1) && ! File::exists($file_path1)) {
+            File::put($file_path1, '');
+            File::put($file_path2, '');
             $this->info('File created successfully.');
         } else {
             $this->error('File already exists.');
