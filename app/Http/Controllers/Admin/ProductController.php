@@ -9,11 +9,15 @@ class ProductController extends Controller
     //
     public function index()
     {
-        return view('admin.products.index');
+        return view('admin.product.index');
     }
 
     public function create()
     {
-        return view('admin.products.create_update');
+        return view('admin.product.create_update');
+    }
+
+    public function recyclebin()
+    {
     }
 }

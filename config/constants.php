@@ -1,7 +1,12 @@
 <?php
+
 return [
-  'USER_ROLE' => [
-      'SUPER_ADMIN' => 1,
-      'ADMIN' => 2,
-  ],
+    'USER_ROLE' => [
+        'SUPER_ADMIN' => 1,
+        'ADMIN' => 2,
+    ],
+    'CATEGORY_STATUS' => [
+        'STOP' => 0,
+        'PROGRESS' => 1
+    ]
 ];

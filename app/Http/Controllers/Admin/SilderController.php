@@ -68,7 +68,7 @@ class SilderController extends Controller
     public function show($id)
     {
         $slider = Slider::where('id', $id)->first();
-        return view('slider.create_update', compact('slider', 'id'));
+        return view('admin.slider.create_update', compact('slider', 'id'));
     }
 
     public function update(Request $request, $id)

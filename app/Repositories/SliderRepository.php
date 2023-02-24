@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Repositories;
+use App\Interfaces\SliderRepositoryInterface;
 use App\Models\Slider;
 use DB;
 
