@@ -1,18 +1,18 @@
-@extends("layouts.app")
+@extends("admin.layouts.app")
 
 @php
     $isUpdate = isset($id) ? true : false;
-    $routeSubmit = isset($id) ? route('sliders.update', $id) : route('sliders.store');
+    $routeSubmit = isset($id) ? route('admin.product.update', $id) : route('admin.product.store');
 @endphp
 
 @section('page-title')
     <section class="content-header">
-        <h1><i class="glyphicon glyphicon-picture"></i> Thêm Sliders</h1>
+        <h1><i class="glyphicon glyphicon-picture"></i> Thêm sản phẩm mới</h1>
         <div class="breadcrumb">
             <button name="THEM_NEW" id="btn_slider" class="btn btn-primary btn-sm">
                 <span class="glyphicon glyphicon-floppy-save"></span> Lưu[Thêm]
             </button>
-            <a class="btn btn-primary btn-sm" href="{{ route('sliders.index') }}" role="button">
+            <a class="btn btn-primary btn-sm" href="{{ route('admin.product.index') }}" role="button">
                 <span class="glyphicon glyphicon-remove"></span> Thoát
             </a>
         </div>

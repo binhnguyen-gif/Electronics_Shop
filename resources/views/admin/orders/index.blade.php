@@ -1,9 +1,9 @@
-@extends("layouts.app")
+@extends("admin.layouts.app")
 
 @section('page-title')
     <h1><i class="glyphicon glyphicon-cd"></i>Danh sách đơn hàng</h1>
     <div class="breadcrumb">
-        <a class="btn btn-primary btn-sm" href="{{ route('sliders.recyclebin') }}" role="button">
+        <a class="btn btn-primary btn-sm" href="{{ route('admin.sliders.recyclebin') }}" role="button">
             <span class="glyphicon glyphicon-trash"></span> Đơn hàng đã lưu({{ $total_trash ?? '' }})
         </a>
     </div>

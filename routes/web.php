@@ -53,17 +53,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
             Route::get('/', [CategoryController::class, 'index'])->name('index');
-//        Route::get('/create', [CategoryController::class, 'create'])->name('create');
+            Route::get('/create', [CategoryController::class, 'create'])->name('create');
+            Route::post('/create', [CategoryController::class, 'store'])->name('store');
+            Route::get('/recyclebin', [CategoryController::class, 'recyclebin'])->name('recyclebin');
         });
 
         Route::group(['prefix' => 'producer', 'as' => 'producer.'], function () {
             Route::get('/', [ProducerController::class, 'index'])->name('index');
-//        Route::get('/create', [ProducerController::class, 'create'])->name('create');
+        Route::get('/create', [ProducerController::class, 'create'])->name('create');
         });
 
-        Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+        Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
             Route::get('/', [ProductController::class, 'index'])->name('index');
             Route::get('/create', [ProductController::class, 'create'])->name('create');
+            Route::post('/create', [ProductController::class, 'store'])->name('store');
+            Route::get('/recyclebin', [ProductController::class, 'recyclebin'])->name('recyclebin');
         });
 
         Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {

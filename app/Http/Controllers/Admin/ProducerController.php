@@ -11,4 +11,8 @@ class ProducerController extends Controller
     {
         return view('admin.producer.index');
     }
+
+    public function create() {
+        return view('admin.producer.create_update');
+    }
 }

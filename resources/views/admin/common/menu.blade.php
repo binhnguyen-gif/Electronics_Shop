@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="{{ route('admin.products.index') }}">
+                <a href="{{ route('admin.product.index') }}">
                     <i class="fa fa-leaf"></i><span>Sản phẩm</span>
                 </a>
             </li>
