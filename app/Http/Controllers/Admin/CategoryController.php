@@ -25,6 +25,7 @@ class CategoryController extends Controller
     public function index()
     {
         $listCategory = $this->categoryRepository->getAllCategory();
+//        dd($listCategory->toArray());
         return view('admin.category.index', compact('listCategory'));
     }
 
@@ -58,8 +59,34 @@ class CategoryController extends Controller
         return redirect()->back()->with('message', 'Thêm mới danh mục thành công');
     }
 
-    public function update()
+    public function show($id)
     {
+        $listCategory = $this->categoryRepository->getAllCategory();
+        $data = $this->categoryRepository->getCategoryById($id)->toArray();
+        return view('admin.category.create_update', compact('id','data','listCategory'));
+    }
+
+    public function update($id, StoreRequest $request)
+    {
+        try {
+            DB::beginTransaction();
+            $updateCategory = $request->only(['name', 'parent_id', 'orders', 'status']);
+            $updateCategory['slug'] = Str::slug($updateCategory['name']);
+            $updateCategory['updated_by'] = Auth::guard('users')->user()->id;
+            if ($updateCategory['parent_id'] == 0){
+                $updateCategory['level'] = 1;
+            }else{
+                $detail = $this->categoryRepository->getCategoryById($updateCategory['parent_id']);
+                $updateCategory['level'] = $detail['level'] + 1;
+            }
+            $this->categoryRepository->updateCategory($id, $updateCategory);
+            DB::commit();
+        }catch (\Exception $e){
+            DB::rollBack();
+            return redirect()->back()->with('error', 'ddd');
+        }
+
+        return redirect()->route('admin.category.index');
     }
 
     public function recyclebin()

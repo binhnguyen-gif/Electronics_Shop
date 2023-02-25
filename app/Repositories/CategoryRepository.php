@@ -9,7 +9,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 {
     public function getAllCategory()
     {
-        return Category::query()->get();
+        return Category::query()->with('parent')->get();
     }
 
     public function createCategory(array $params)
@@ -19,7 +19,12 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function getCategoryById($id)
     {
-        $category = Category::query()->where('id', $id)->where('trash', 1)->latest()->get();
+        $category = Category::query()->where('id', $id)->first();
         return $category;
+    }
+
+    public function updateCategory($id, array $params)
+    {
+        return Category::whereId($id)->update($params);
     }
 }

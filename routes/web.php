@@ -55,6 +55,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('/', [CategoryController::class, 'index'])->name('index');
             Route::get('/create', [CategoryController::class, 'create'])->name('create');
             Route::post('/create', [CategoryController::class, 'store'])->name('store');
+            Route::get('/show/{id}', [CategoryController::class, 'show'])->name('show');
+            Route::put('/update/{id}', [CategoryController::class, 'update'])->name('update');
             Route::get('/recyclebin', [CategoryController::class, 'recyclebin'])->name('recyclebin');
         });
 
