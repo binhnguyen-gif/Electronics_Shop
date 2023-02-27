@@ -48,25 +48,17 @@ class ProducerController extends Controller
 
     public function show($id)
     {
-        $listCategory = $this->producerRepository->getAllProducer();
         $data = $this->producerRepository->getProducerById($id)->toArray();
-        return view('admin.producer.create_update', compact('id', 'data', 'listCategory'));
+        return view('admin.producer.create_update', compact('id', 'data'));
     }
 
     public function update($id, StoreRequest $request)
     {
         try {
             DB::beginTransaction();
-            $updateCategory = $request->only(['name', 'parent_id', 'orders', 'status']);
-            $updateCategory['slug'] = Str::slug($updateCategory['name']);
-            $updateCategory['updated_by'] = Auth::guard('users')->user()->id;
-            if ($updateCategory['parent_id'] == 0) {
-                $updateCategory['level'] = 1;
-            } else {
-                $detail = $this->producerRepository->getProducerById($updateCategory['parent_id']);
-                $updateCategory['level'] = $detail['level'] + 1;
-            }
-            $this->producerRepository->updateProducer($id, $updateCategory);
+            $updateProducer = $request->only(['name', 'code', 'keyword', 'status']);
+            $updateProducer['updated_by'] = Auth::guard('users')->user()->id;
+            $this->producerRepository->updateProducer($id, $updateProducer);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -80,8 +72,7 @@ class ProducerController extends Controller
     {
         try {
             DB::beginTransaction();
-            $category = Producer::query()->findOrFail($id);
-            $category->delete();
+            $this->producerRepository->deleteProducer($id);
             DB::commit();
             return redirect()->back()->with('success', 'Xóa thành công');
         } catch (Exception $e) {

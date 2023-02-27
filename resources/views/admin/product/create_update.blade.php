@@ -9,7 +9,7 @@
     <section class="content-header">
         <h1><i class="glyphicon glyphicon-picture"></i> Thêm sản phẩm mới</h1>
         <div class="breadcrumb">
-            <button name="THEM_NEW" id="btn_slider" class="btn btn-primary btn-sm">
+            <button class="btn btn-primary btn-sm" onclick="event.preventDefault();document.getElementById('form-product').submit();">
                 <span class="glyphicon glyphicon-floppy-save"></span> Lưu[Thêm]
             </button>
             <a class="btn btn-primary btn-sm" href="{{ route('admin.product.index') }}" role="button">
@@ -21,7 +21,7 @@
 
 @section('content')
     <form action="{{ $routeSubmit }}" enctype="multipart/form-data" method="POST" accept-charset="utf-8"
-          id="upload_slider">
+          id="form-product">
         @csrf
         @if($isUpdate)
             @method('PUT')
@@ -36,27 +36,38 @@
                                     <label>Tên sản phẩm <span class="maudo">(*)</span></label>
                                     <input type="text" class="form-control" name="name" style="width:100%"
                                            placeholder="Tên sản phẩm">
-                                    <div class="error" id="password_error"></div>
+                                    @error('name')
+                                    <div class="error">{{$message}}</div>
+                                    @enderror
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="col-md-6" style="padding-left: 0px;">
                                             <div class="form-group">
                                                 <label>Loại sản phẩm<span class="maudo">(*)</span></label>
-                                                <select name="catid" class="form-control">
+                                                <select name="category_id" class="form-control">
                                                     <option value="">[--Chọn loại sản phẩm--]</option>
+                                                    @foreach($listCategory as $category)
+                                                        <option value="{{data_get($category, 'id')}}">{{data_get($category, 'name')}}</option>
+                                                    @endforeach
                                                 </select>
-                                                <div class="error" id="password_error"></div>
+                                                @error('name')
+                                                <div class="error">{{$message}}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6" style="padding-right: 0px;">
                                             <div class="form-group">
                                                 <label>Nhà cung cấp <span class="maudo">(*)</span></label>
-                                                <select name="producer" class="form-control">
+                                                <select name="producer_id" class="form-control">
                                                     <option value="">[--Chọn nhà cung cấp--]</option>
-
+                                                    @foreach($listProducer as $producer)
+                                                        <option value="{{data_get($producer, 'id')}}">{{data_get($producer, 'name')}}</option>
+                                                    @endforeach
                                                 </select>
-                                                <div class="error" id="password_error"></div>
+                                                @error('name')
+                                                <div class="error">{{$message}}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -74,18 +85,20 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Giá gốc</label>
-                                    <input name="price_root" class="form-control" type="number" value="0" min="0"
+                                    <input name="price" class="form-control" type="number" value="0" min="0"
                                            step="1" max="1000000000">
                                 </div>
                                 <div class="form-group">
                                     <label>Khuyến mãi (%)</label>
-                                    <input name="sale_of" class="form-control" type="number">
+                                    <input name="sale" class="form-control" type="number">
                                 </div>
                                 <div class="form-group">
                                     <label>Giá bán</label>
-                                    <input name="price_buy" class="form-control" type="number" value="0" min="0"
+                                    <input name="price_sale" class="form-control" type="number" value="0" min="0"
                                            step="1" max="1000000000">
-                                    <div class="error" id="password_error"></div>
+                                    @error('name')
+                                    <div class="error">{{$message}}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Số lượng</label>

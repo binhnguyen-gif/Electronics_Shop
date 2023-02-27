@@ -13,4 +13,9 @@ class Producer extends Model
     protected $table = 'producers';
 
     protected $fillable = ['name', 'code', 'keyword', 'status', 'created_by', 'updated_by'];
+
+    public function getPosterAttribute() {
+        $poster = User::query()->findOrFail($this->updated_by)->toArray();
+        return $poster['name'];
+    }
 }

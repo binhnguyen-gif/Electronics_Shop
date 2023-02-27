@@ -11,7 +11,8 @@
                 <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 slider-main pull-left">
                     <div class="owl-carousel-slider owl-carousel owl-theme">
                         @foreach($sliders as $slider)
-                            <div class="item"><img src="{{ asset('storage') . '/upload/' . data_get($slider, 'img') }}" alt="{{data_get($slider, 'name')}}"></div>
+                            <div class="item"><img src="{{ asset('storage') . '/upload/' . data_get($slider, 'img') }}"
+                                                   alt="{{data_get($slider, 'name')}}"></div>
                         @endforeach
                     </div>
                 </div>
@@ -23,49 +24,43 @@
             </div>
         </div>
         <div class="container" style="margin-bottom: 20px;">
-            <div class="owl-carousel owl-carousel-product owl-theme" style="border: 1px solid #0f9ed8;">
-
-                <div class="item" style="margin: 0px;">
-                    <div class="products-sale">
-                        <div class="lt-product-group-image">
-                            <a href="" title="" >
-                                <img class="img-p"src="public/images/products/" alt="">
-                            </a>
-
-
-                            <div class="giam-percent">
-                                <span class="text-giam-percent">Giảm %</span>
+                <div class="owl-carousel owl-carousel-product owl-theme" style="border: 1px solid #0f9ed8;">
+                    @foreach($products as $product)
+                    <div class="item" style="margin: 0px;">
+                        <div class="products-sale">
+                            <div class="lt-product-group-image">
+                                <a href="" title="">
+                                    <img class="img-p"
+                                         src="{{asset('storage/upload') . '/' . data_get($product,'avatar')}}" alt="">
+                                </a>
+                                <div class="giam-percent">
+                                    <span class="text-giam-percent">Giảm {{data_get($product, 'sale')}}%</span>
+                                </div>
                             </div>
-
-                        </div>
-                        <div class="lt-product-group-info">
-                            <a href="" title="" style="text-align: left;">
-                                <h3></h3>
-                            </a>
-                            <div class="price-box">
-
-
-                                <p class="old-price">
-                                    <span class="price">₫</span>
-                                </p>
-                                <p class="special-price">
-                                    <span class="price">₫</span>
-                                </p>
-
-                                <p class="old-price">
-                                    <span class="price" style="color: #fff">₫</span>
-                                </p>
-                                <p class="special-price">
-                                    <span class="price">₫</span>
-                                </p>
-
+                            <div class="lt-product-group-info">
+                                <a href="" title="" style="text-align: left;">
+                                    <h3>{{data_get($product, 'name')}}</h3>
+                                </a>
+                                <div class="price-box">
+                                    <p class="old-price">
+                                        <span class="price">{{data_get($product, 'price')}}₫</span>
+                                    </p>
+                                    <p class="special-price">
+                                        <span class="price">{{data_get($product, 'price_sale')}}₫</span>
+                                    </p>
+                                    <p class="old-price">
+                                        <span class="price" style="color: #fff">₫</span>
+                                    </p>
+                                    <p class="special-price">
+                                        <span class="price">₫</span>
+                                    </p>
+                                </div>
+                                <div class="clear"></div>
                             </div>
-                            <div class="clear"></div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-
-            </div>
         </div>
 
         <div class="container" style="margin-top: 20px;">
@@ -75,12 +70,12 @@
         </div>
         <div class="container" style="margin-bottom: 20px;">
             <div class="owl-carousel owl-carousel-product owl-theme" style="border: 1px solid #0f9ed8;">
-
+                @foreach($products as $product)
                 <div class="item" style="margin: 0px;">
                     <div class="products-sale">
                         <div class="lt-product-group-image">
-                            <a href="" title="" >
-                                <img class="img-p"src="public/images/products" alt="">
+                            <a href="" title="">
+                                <img class="img-p" src="public/images/products" alt="">
                             </a>
 
                             <div class="giam-percent">
@@ -114,78 +109,76 @@
                         </div>
                     </div>
                 </div>
-
+                @endforeach
             </div>
         </div>
     </section>
 
     </section>
     <div id="content">
-        <div class="container">
+{{--        <div class="container">--}}
+{{--            <div class="list-product">--}}
+{{--                <div class="list-header-z">--}}
+{{--                    <h2><a href=""> nổi bật</a></h2>--}}
+{{--                    <ul class="sub-category">--}}
 
-            <div class="list-product">
-                <div class="list-header-z">
-                    <h2><a href=""> nổi bật</a></h2>
-                    <ul class="sub-category">
+{{--                        <li>--}}
+{{--                            <a href="san-pham/"--}}
+{{--                               title=""--}}
+{{--                               class="ws-nw overflow ellipsis"--}}
+{{--                            >--}}
 
-                        <li>
-                            <a href="san-pham/"
-                            title=""
-                            class="ws-nw overflow ellipsis"
-                            >
+{{--                            </a>--}}
+{{--                        </li>--}}
 
-                            </a>
-                        </li>
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--                <div class="product-container">--}}
 
-                    </ul>
-                </div>
-                <div class="product-container">
-
-                    <div class="p-box-5">
-                        <div class="product-lt">
-                            <div class="lt-product-group-image">
-                                <a href="" title="" >
-                                    <img class="img-p"src="public/images/products/" alt="">
-                                </a>
-
-
-                                <div class="giam-percent">
-                                    <span class="text-giam-percent">Giảm %</span>
-                                </div>
-
-                            </div>
-
-                            <div class="lt-product-group-info">
-                                <a href="" title="" style="text-align: left;">
-                                    <h3></h3>
-                                </a>
-                                <div class="price-box">
+{{--                    <div class="p-box-5">--}}
+{{--                        <div class="product-lt">--}}
+{{--                            <div class="lt-product-group-image">--}}
+{{--                                <a href="" title="">--}}
+{{--                                    <img class="img-p" src="public/images/products/" alt="">--}}
+{{--                                </a>--}}
 
 
-                                    <p class="old-price">
-                                        <span class="price">₫</span>
-                                    </p>
-                                    <p class="special-price">
-                                        <span class="price">₫</span>
-                                    </p>
+{{--                                <div class="giam-percent">--}}
+{{--                                    <span class="text-giam-percent">Giảm %</span>--}}
+{{--                                </div>--}}
 
-                                    <p class="old-price">
-                                        <span class="price" style="color: #fff">₫</span>
-                                    </p>
-                                    <p class="special-price">
-                                        <span class="price">₫</span>
-                                    </p>
+{{--                            </div>--}}
 
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                    </div>
+{{--                            <div class="lt-product-group-info">--}}
+{{--                                <a href="" title="" style="text-align: left;">--}}
+{{--                                    <h3></h3>--}}
+{{--                                </a>--}}
+{{--                                <div class="price-box">--}}
 
-                </div>
-            </div>
 
-        </div>
+{{--                                    <p class="old-price">--}}
+{{--                                        <span class="price">₫</span>--}}
+{{--                                    </p>--}}
+{{--                                    <p class="special-price">--}}
+{{--                                        <span class="price">₫</span>--}}
+{{--                                    </p>--}}
+
+{{--                                    <p class="old-price">--}}
+{{--                                        <span class="price" style="color: #fff">₫</span>--}}
+{{--                                    </p>--}}
+{{--                                    <p class="special-price">--}}
+{{--                                        <span class="price">₫</span>--}}
+{{--                                    </p>--}}
+
+{{--                                </div>--}}
+{{--                                <div class="clear"></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 
     <div class="home-blog">
@@ -268,7 +261,6 @@
         <!--Begin-->
         <!--End-->
     </div>
-
 
 @endsection
 {{--<div class="container">--}}

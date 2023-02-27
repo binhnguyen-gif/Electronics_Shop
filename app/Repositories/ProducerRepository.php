@@ -20,13 +20,16 @@ class ProducerRepository implements ProducerRepositoryInterface
 
     public function getProducerById($id)
     {
-        $category = Producer::query()->where('id', $id)->first();
-        return $category;
+        return Producer::query()->whereId($id)->first();
     }
 
     public function updateProducer($id, array $params)
     {
         return Producer::whereId($id)->update($params);
+    }
+
+    public function deleteProducer($id){
+        return Producer::destroy($id);
     }
 
     public function restoreProducerById($id)
@@ -41,6 +44,6 @@ class ProducerRepository implements ProducerRepositoryInterface
 
     public function totalTrash()
     {
-        return Category::onlyTrashed()->count();
+        return Producer::onlyTrashed()->count();
     }
 }

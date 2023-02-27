@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $sliders = Slider::query()->select(['name', 'img'])->get()->toArray();
-        return view('home', compact('sliders'));
+        $products = Product::query()->orderBy('sale', 'desc')->get()->toArray();
+        return view('home', compact('sliders', 'products'));
     }
 }

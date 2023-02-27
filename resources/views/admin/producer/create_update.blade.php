@@ -7,7 +7,7 @@
 
 @section('page-title')
     <section class="content-header">
-        <h1><i class="glyphicon glyphicon-picture"></i> Thêm nhà cung cấp</h1>
+        <h1><i class="glyphicon glyphicon-picture"></i> {{$isUpdate ? 'Thêm nhà cung cấp' : 'Cập nhật nhà cung cấp'}}</h1>
         <div class="breadcrumb">
             <button class="btn btn-primary btn-sm" onclick="event.preventDefault(); document.getElementById('form-producer').submit();">
                 <span class="glyphicon glyphicon-floppy-save"></span> Lưu[Thêm]
@@ -33,7 +33,7 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label>Tên nhà cung cấp <span class = "maudo">(*)</span></label>
-                                    <input type="text" class="form-control" name="name" placeholder="Tên nhà cung cấp">
+                                    <input type="text" class="form-control" name="name" value="{{isset($data) ? data_get($data, 'name') : ''}}" placeholder="Tên nhà cung cấp">
                                     @error('name')
                                     <div class="error" style="color: red">
                                         {{$message}}
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Mã code <span class = "maudo">(*)</span></label>
-                                    <input type="text" class="form-control" name="code" placeholder="Mã code">
+                                    <input type="text" class="form-control" name="code" value="{{isset($data) ? data_get($data, 'code') : ''}}" placeholder="Mã code">
                                     @error('code')
                                     <div class="error" style="color: red">
                                         {{$message}}
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Từ khóa <span class = "maudo">(*)</span></label>
-                                    <input type="text" class="form-control" name="keyword" placeholder="Từ khóa">
+                                    <input type="text" class="form-control" name="keyword" value="{{isset($data) ? data_get($data, 'keyword') : ''}}" placeholder="Từ khóa">
                                     <span style="font-style: italic; line-height: 32px;">Chú ý: Mỗi từ khóa phân cách bởi một dấu ",". Ví dụ: dienthoai, maytinhbang</span>
                                     @error('keyword')
                                     <div class="error" style="color: red">
@@ -62,8 +62,8 @@
                                 <div class="form-group">
                                     <label>Trạng thái</label>
                                     <select name="status" class="form-control">
-                                        <option value="1">Xuất bản</option>
-                                        <option value="0">Chưa xuất bản</option>
+                                        <option value="1" {{data_get($data, 'status') == 1 ? 'selected' : ''}}>Xuất bản</option>
+                                        <option value="0" {{data_get($data, 'status') == 0 ? 'selected' : ''}}>Chưa xuất bản</option>
                                     </select>
                                 </div>
                             </div>
