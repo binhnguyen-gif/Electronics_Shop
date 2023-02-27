@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'categories';
 
@@ -22,6 +23,11 @@ class Category extends Model
     public function getCountParentIdAttribute() {
         $countParentId = Category::query()->whereParentId($this->id)->count();
         return $countParentId;
+    }
+
+    public function getPosterAttribute() {
+        $poster = User::query()->findOrFail($this->updated_by)->toArray();
+        return $poster['name'];
     }
 
     public function parent()

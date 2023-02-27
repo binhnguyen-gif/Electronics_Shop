@@ -57,12 +57,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::post('/create', [CategoryController::class, 'store'])->name('store');
             Route::get('/show/{id}', [CategoryController::class, 'show'])->name('show');
             Route::put('/update/{id}', [CategoryController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [CategoryController::class, 'delete'])->name('delete');
             Route::get('/recyclebin', [CategoryController::class, 'recyclebin'])->name('recyclebin');
+            Route::put('/restore/{id}', [CategoryController::class, 'restore'])->name('restore');
+            Route::delete('/forever-delete/{id}', [CategoryController::class, 'foreverDelete'])->name('forever_delete');
         });
 
         Route::group(['prefix' => 'producer', 'as' => 'producer.'], function () {
             Route::get('/', [ProducerController::class, 'index'])->name('index');
-        Route::get('/create', [ProducerController::class, 'create'])->name('create');
+            Route::get('/create', [ProducerController::class, 'create'])->name('create');
         });
 
         Route::group(['prefix' => 'product', 'as' => 'product.'], function () {

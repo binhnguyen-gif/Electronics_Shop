@@ -27,4 +27,19 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return Category::whereId($id)->update($params);
     }
+
+    public function restoreCategoryById($id)
+    {
+        return Category::withTrashed()->whereId($id)->restore();
+    }
+
+    public function foreverDeleteCategoryById($id)
+    {
+        return Category::withTrashed()->whereId($id)->forceDelete();
+    }
+
+    public function totalTrash()
+    {
+        return Category::onlyTrashed()->count();
+    }
 }

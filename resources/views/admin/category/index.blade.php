@@ -7,7 +7,7 @@
             <span class="glyphicon glyphicon-plus"></span> Thêm mới
         </a>
         <a class="btn btn-primary btn-sm" href="{{ route('admin.category.recyclebin') }}" role="button">
-            <span class="glyphicon glyphicon-trash"></span> Thùng rác
+            <span class="glyphicon glyphicon-trash"></span> Thùng rác({{$total_trash}})
         </a>
     </div>
 @endsection
@@ -75,16 +75,28 @@
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="btn btn-success btn-xs" href="{{route('admin.category.show', ['id' => data_get($value, 'id')])}}" role = "button">
+                                                <a class="btn btn-success btn-xs"
+                                                   href="{{route('admin.category.show', ['id' => data_get($value, 'id')])}}"
+                                                   role="button">
                                                     <span class="glyphicon glyphicon-edit"></span>Sửa
                                                 </a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="btn btn-danger btn-xs" href="{{route('admin.category.create')}}"
-                                                   onclick="return confirm('Xác nhận xóa loại sản phẩm này ?')"
+                                                <a class="btn btn-danger btn-xs"
+                                                   href="javascript:void(0);"
+                                                   onclick="event.preventDefault();
+                                                    if (confirm('Xác nhận xóa loại sản phẩm này ?')) {
+                                                        document.getElementById('delete-form').submit();
+                                                    }"
                                                    role="button">
                                                     <span class="glyphicon glyphicon-trash"></span>Xóa
                                                 </a>
+                                                <form
+                                                    action="{{route('admin.category.delete', ['id' => data_get($value, 'id')])}}"
+                                                    method="POST" style="display: none;" id="delete-form">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -108,4 +120,6 @@
         <!-- /.row -->
     </section>
 @endsection
+
+
 

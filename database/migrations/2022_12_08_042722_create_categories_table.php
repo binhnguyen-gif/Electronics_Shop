@@ -25,6 +25,7 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
             $table->integer('created_by');
             $table->integer('updated_by');
+            $table->timestamp('deleted_at');
         });
     }
 
