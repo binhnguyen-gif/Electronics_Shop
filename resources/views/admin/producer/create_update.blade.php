@@ -2,17 +2,17 @@
 
 @php
     $isUpdate = isset($id) ? true : false;
-    $routeSubmit = isset($id) ? route('sliders.update', $id) : route('sliders.store');
+    $routeSubmit = isset($id) ? route('admin.producer.update', $id) : route('admin.producer.store');
 @endphp
 
 @section('page-title')
     <section class="content-header">
         <h1><i class="glyphicon glyphicon-picture"></i> Thêm nhà cung cấp</h1>
         <div class="breadcrumb">
-            <button name="THEM_NEW" id="btn_slider" class="btn btn-primary btn-sm">
+            <button class="btn btn-primary btn-sm" onclick="event.preventDefault(); document.getElementById('form-producer').submit();">
                 <span class="glyphicon glyphicon-floppy-save"></span> Lưu[Thêm]
             </button>
-            <a class="btn btn-primary btn-sm" href="{{ route('sliders.index') }}" role="button">
+            <a class="btn btn-primary btn-sm" href="{{ route('admin.producer.index') }}" role="button">
                 <span class="glyphicon glyphicon-remove"></span> Thoát
             </a>
         </div>
@@ -20,8 +20,7 @@
 @endsection
 
 @section('content')
-    <form action="{{ $routeSubmit }}" enctype="multipart/form-data" method="POST" accept-charset="utf-8"
-          id="upload_slider">
+    <form action="{{ $routeSubmit }}" enctype="multipart/form-data" method="POST" accept-charset="utf-8" id="form-producer">
         @csrf
         @if($isUpdate)
             @method('PUT')
@@ -33,23 +32,32 @@
                         <div class="box-body">
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label>Tên nhà cung cấp <span class="maudo">(*)</span></label>
+                                    <label>Tên nhà cung cấp <span class = "maudo">(*)</span></label>
                                     <input type="text" class="form-control" name="name" placeholder="Tên nhà cung cấp">
-                                    <div class="error" id="password_error" style="color: red"><?php
-                                                                                              echo form_error('name') ?></div>
+                                    @error('name')
+                                    <div class="error" style="color: red">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Mã code <span class="maudo">(*)</span></label>
+                                    <label>Mã code <span class = "maudo">(*)</span></label>
                                     <input type="text" class="form-control" name="code" placeholder="Mã code">
-                                    <div class="error" id="password_error" style="color: red"><?php
-                                                                                              echo form_error('code') ?></div>
+                                    @error('code')
+                                    <div class="error" style="color: red">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Từ khóa <span class="maudo">(*)</span></label>
+                                    <label>Từ khóa <span class = "maudo">(*)</span></label>
                                     <input type="text" class="form-control" name="keyword" placeholder="Từ khóa">
                                     <span style="font-style: italic; line-height: 32px;">Chú ý: Mỗi từ khóa phân cách bởi một dấu ",". Ví dụ: dienthoai, maytinhbang</span>
-                                    <div class="error" id="password_error" style="color: red"><?php
-                                                                                              echo form_error('keyword') ?></div>
+                                    @error('keyword')
+                                    <div class="error" style="color: red">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Trạng thái</label>
@@ -70,15 +78,7 @@
     </form>
 @endsection
 
-@push('js')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(document).on('click', '#btn_slider', function () {
-                $('#upload_slider').submit();
-            });
-        });
-    </script>
-@endpush
+
 
 
 

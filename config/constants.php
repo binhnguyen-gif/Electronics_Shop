@@ -8,5 +8,9 @@ return [
     'CATEGORY_STATUS' => [
         'STOP' => 0,
         'PROGRESS' => 1
+    ],
+    'PRODUCER_STATUS' => [
+        'publish' => 0,
+        'unpublished' => 1
     ]
 ];

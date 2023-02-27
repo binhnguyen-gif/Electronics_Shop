@@ -66,6 +66,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::group(['prefix' => 'producer', 'as' => 'producer.'], function () {
             Route::get('/', [ProducerController::class, 'index'])->name('index');
             Route::get('/create', [ProducerController::class, 'create'])->name('create');
+            Route::post('/create', [ProducerController::class, 'store'])->name('store');
+            Route::get('/show/{id}', [ProducerController::class, 'show'])->name('show');
+            Route::put('/update/{id}', [ProducerController::class, 'update'])->name('update');
+            Route::delete('/delete/{id}', [ProducerController::class, 'delete'])->name('delete');
+            Route::get('/recyclebin', [ProducerController::class, 'recyclebin'])->name('recyclebin');
+            Route::put('/restore/{id}', [ProducerController::class, 'restore'])->name('restore');
+            Route::delete('/forever-delete/{id}', [ProducerController::class, 'foreverDelete'])->name('forever_delete');
         });
 
         Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
