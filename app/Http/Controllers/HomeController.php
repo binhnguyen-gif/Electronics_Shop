@@ -29,4 +29,8 @@ class HomeController extends Controller
         $products = Product::query()->orderBy('sale', 'desc')->get()->toArray();
         return view('home', compact('sliders', 'products'));
     }
+
+    public function detail() {
+        return view('product.detail');
+    }
 }
