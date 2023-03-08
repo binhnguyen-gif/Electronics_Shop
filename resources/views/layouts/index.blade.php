@@ -64,6 +64,7 @@
 <script src="{{ asset("assets/js/search-quick.js") }}"></script>
 <script src="{{ asset("assets/js/custom-owl.js") }}"></script>
 <script src="{{ asset("assets/js/jquery.flexslider.js") }}"></script>
+@stack('js')
 <div class='scrolltop'>
     <div class='scroll icon'><i class="fa fa-4x fa-angle-up"></i></div>
 </div>

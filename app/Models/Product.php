@@ -30,4 +30,9 @@ class Product extends Model
         'created_by',
         'updated_by'
     ];
+
+    public function getTrademarkAttribute() {
+        $categoryName = Category::query()->findOrFail($this->category_id);
+        return $categoryName['name'];
+    }
 }

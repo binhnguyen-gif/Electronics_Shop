@@ -139,7 +139,7 @@ class ProductController extends Controller
         foreach ($files as $file) {
             $name = $file->getClientOriginalName();
             $file->move(public_path().'/product/', $name);
-            $file_name .= $name.'#';
+            $file_name .= '#' . $name;
         }
         return $file_name;
     }

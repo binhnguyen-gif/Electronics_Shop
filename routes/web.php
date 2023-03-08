@@ -111,7 +111,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
 //Client
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/detail', [HomeController::class, 'detail'])->name('detail');
+Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
+Route::post('/addCart', [HomeController::class, 'addCart'])->name('add_cart');
+//Route::get('/detail', [HomeController::class, 'detail'])->name('detail');
 
 Route::get('/set-locale/{language}', [LanguageController::class, 'setLocale'])->name('set_locale');
 

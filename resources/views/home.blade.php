@@ -29,7 +29,7 @@
                     <div class="item" style="margin: 0px;">
                         <div class="products-sale">
                             <div class="lt-product-group-image">
-                                <a href="{{route('detail')}}" title="">
+                                <a href="{{route('detail', ['id' => data_get($product, 'id')])}}" title="">
                                     <img class="img-p"
                                          src="{{asset('storage/upload') . '/' . data_get($product,'avatar')}}" alt="">
                                 </a>
