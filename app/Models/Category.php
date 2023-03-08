@@ -34,4 +34,9 @@ class Category extends Model
     {
         return $this->hasOne(Category::class, 'id', 'parent_id');
     }
+
+    public function sub()
+    {
+        return $this->belongsTo(Category::class, 'parent_id', 'id');
+    }
 }

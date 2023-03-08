@@ -70,31 +70,27 @@
         </div>
         <div class="container" style="margin-bottom: 20px;">
             <div class="owl-carousel owl-carousel-product owl-theme" style="border: 1px solid #0f9ed8;">
-                @foreach($products as $product)
+                @foreach($selling as $product)
                 <div class="item" style="margin: 0px;">
                     <div class="products-sale">
                         <div class="lt-product-group-image">
                             <a href="" title="">
-                                <img class="img-p" src="public/images/products" alt="">
+                                <img class="img-p" src="{{asset('storage/upload'. '/' . data_get($product, 'avatar'))}}" alt="">
                             </a>
-
                             <div class="giam-percent">
-                                <span class="text-giam-percent">Giảm %</span>
+                                <span class="text-giam-percent">Giảm {{data_get($product, 'sale')}} %</span>
                             </div>
-
                         </div>
                         <div class="lt-product-group-info">
                             <a href="" title="" style="text-align: left;">
-                                <h3></h3>
+                                <h3>{{data_get($product, 'name')}}</h3>
                             </a>
                             <div class="price-box">
-
-
                                 <p class="old-price">
-                                    <span class="price">₫</span>
+                                    <span class="price">{{data_get($product, 'price')}}₫</span>
                                 </p>
                                 <p class="special-price">
-                                    <span class="price">₫</span>
+                                    <span class="price">{{data_get($product, 'price_sale')}}₫</span>
                                 </p>
 
                                 <p class="old-price">
@@ -194,7 +190,7 @@
                     <div class="latest">
                         <a href="tin-tuc/">
                             <div class="tempvideo">
-                                <img width="98%" src="public/images/posts/">
+                                <img width="98%" src="{{asset('assets/images/icon_142e7.png')}}">
                             </div>
                             <h3 style="color: #999;"></h3>
                         </a>
@@ -212,7 +208,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center m-b-xs-10">
                             <div class="service_item">
                                 <div class="icon icon_product">
-                                    <img src="public/images/icon_142e7.png" alt="">
+                                    <img src="{{asset('assets/images/icon_142e7.png')}}" alt="">
                                 </div>
                                 <div class="description_icon">
                                 <span class="large-text">
@@ -227,7 +223,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center m-b-xs-10">
                             <div class="service_item">
                                 <div class="icon icon_product">
-                                    <img src="public/images/icon_242e7.png" alt="">
+                                    <img src="{{asset('assets/images/icon_242e7.png')}}" alt="">
                                 </div>
                                 <div class="description_icon">
                                 <span class="large-text">
@@ -242,7 +238,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center m-b-xs-10">
                             <div class="service_item">
                                 <div class="icon icon_product">
-                                    <img src="public/images/icon_342e7.png" alt="">
+                                    <img src="{{asset('assets/images/icon_342e7.png')}}" alt="">
                                 </div>
                                 <div class="description_icon">
                                 <span class="large-text">

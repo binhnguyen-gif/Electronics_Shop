@@ -32,7 +32,7 @@
                                         <tr>
                                             <td class="img-product-cart">
                                                 <a href="">
-                                                    <img src="{{asset('product')}}" alt="">
+                                                    <img src="{{asset('storage/upload' . '/' . $detail['avatar'])}}" alt="">
                                                 </a>
                                             </td>
                                             <td>

@@ -57,12 +57,12 @@
                             </div>
                             <div class="product-view-desc">
                                 <h4>Mô tả:</h4>
-                                <p></p>
+                                <p>{{data_get($product, 'sortDesc', '')}}</p>
                             </div>
                             <div class="actions-qty">
-
-                                <h2 style="color:red;">Ngừng kinh doanh</h2>
-
+                                @if(data_get($product, 'status') != 1)
+                                    <h2 style="color:red;">Ngừng kinh doanh</h2>
+                                @endif
                                 <div class="actions-qty__button">
                                     <a href="{{route('add_cart', ['id' => data_get($product, 'id')])}}" class="button btn-cart add_to_cart_detail detail-button" title="Mua ngay"
                                             type="button" aria-label="Mua ngay" class="fa fa-shopping-cart"> Mua ngay

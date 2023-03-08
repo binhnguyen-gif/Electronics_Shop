@@ -112,6 +112,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
 //Client
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/yield', [HomeController::class, 'show'])->name('yield');
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/add-to-cart/{id}', [CartController::class, 'addCart'])->name('add_cart');
 Route::get('/cart-detail', [CartController::class, 'show'])->name('cart_detail');
