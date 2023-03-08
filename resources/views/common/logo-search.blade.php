@@ -35,16 +35,22 @@
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 hidden-xs" style="padding: 24px;">
             <!-- Cart -->
             <div class="cart_header">
-                <a href="gio-hang" title="Giỏ hàng">
-         <span class="cart_header_icon">
-          <img src="{{ asset('assets/images/cart2.png') }}" alt="Cart">
-        </span>
+                <a href="{{route('cart_detail')}}" title="Giỏ hàng">
+                     <span class="cart_header_icon">
+                        <img src="{{ asset('assets/images/cart2.png') }}" alt="Cart">
+                     </span>
                     <span class="box_text">
-          <strong class="cart_header_count">Giỏ hàng <span></span></strong>
-          <span class="cart_price">
-                <p>0 VNĐ</p>
-            </span>
-          </span>
+                        <strong class="cart_header_count">Giỏ hàng @if(session()->has('cart')) <span>({{count((array) session('cart'))}})</span> @endif</strong>
+                        <?php $total_price = 0;?>
+                        @if (session()->has('cart'))
+                            @foreach((array)session('cart') as $id => $detail)
+                                <?php $total_price += $detail['price'] * $detail['quantity'];?>
+                            @endforeach
+                        @endif
+                        <span class="cart_price">
+                            <p>{{number_format($total_price)}} VNĐ</p>
+                        </span>
+                    </span>
                 </a>
                 <div class="cart_clone_box">
                     <div class="cart_box_wrap hidden">

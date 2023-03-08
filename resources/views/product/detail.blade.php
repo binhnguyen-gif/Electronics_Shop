@@ -64,10 +64,9 @@
                                 <h2 style="color:red;">Ngừng kinh doanh</h2>
 
                                 <div class="actions-qty__button">
-                                    <button class="button btn-cart add_to_cart_detail detail-button" title="Mua ngay"
-                                            type="button" aria-label="Mua ngay" class="fa fa-shopping-cart"
-                                            onclick="onAddCart({{data_get($product, 'id')}})"> Mua ngay
-                                    </button>
+                                    <a href="{{route('add_cart', ['id' => data_get($product, 'id')])}}" class="button btn-cart add_to_cart_detail detail-button" title="Mua ngay"
+                                            type="button" aria-label="Mua ngay" class="fa fa-shopping-cart"> Mua ngay
+                                    </a>
                                 </div>
 
                             </div>
@@ -180,23 +179,6 @@
             </div>
         </div>
     </section>
-    <script>
-
-        function onAddCart(id) {
-            var strurl = "{{route('add_cart')}}";
-            jQuery.ajax({
-                url: strurl,
-                type: 'POST',
-                dataType: 'json',
-                data: {id: id},
-                success: function (data) {
-                    document.location.reload(true);
-                    alert('Thêm sản phẩm vào giỏ hàng thành công !');
-                }
-            });
-        }
-    </script>
-
 @endsection
 
 
@@ -208,5 +190,22 @@
                 controlNav: "thumbnails"
             });
         });
+    </script>
+
+    <script>
+
+        {{--function onAddCart(id) {--}}
+        {{--    var strurl = "{{route('add_cart')}}";--}}
+        {{--    jQuery.ajax({--}}
+        {{--        url: strurl,--}}
+        {{--        type: 'POST',--}}
+        {{--        // dataType: 'json',--}}
+        {{--        data: {id: id},--}}
+        {{--        success: function (data) {--}}
+        {{--            document.location.reload(true);--}}
+        {{--            alert('Thêm sản phẩm vào giỏ hàng thành công !');--}}
+        {{--        }--}}
+        {{--    });--}}
+        {{--}--}}
     </script>
 @endpush

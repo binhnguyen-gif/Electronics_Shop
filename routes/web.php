@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ProductController as CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -112,7 +113,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 //Client
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
-Route::post('/addCart', [HomeController::class, 'addCart'])->name('add_cart');
+Route::get('/add-to-cart/{id}', [CartController::class, 'addCart'])->name('add_cart');
+Route::get('/cart-detail', [CartController::class, 'show'])->name('cart_detail');
 //Route::get('/detail', [HomeController::class, 'detail'])->name('detail');
 
 Route::get('/set-locale/{language}', [LanguageController::class, 'setLocale'])->name('set_locale');

@@ -44,11 +44,5 @@ class HomeController extends Controller
 
     }
 
-    private function cart($id) {
-        $cart = Session::get('cart');
-        if (!in_array($id, $cart)){
-            Session::put('cart', $id);
-        }
-        Session::
-    }
+
 }
