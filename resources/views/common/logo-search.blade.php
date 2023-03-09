@@ -12,11 +12,11 @@
                     <i class="icon fa fa-envelope"></i> sale.smart.store.2019@gmail.com
                 </div>
             </div>
-            <form action="search" method="get" role="form">
+            <form action="{{route('yield')}}" method="get" role="form">
                 <div class="input-search">
                     <input type="text" class="form-control" id="search_text" name="search"
                            placeholder="Nhập từ khóa để tìm kiếm...">
-                    <button>
+                    <button type="submit">
                         <!--  <ul class="search-quick">
                            <li>
                              <a href="">

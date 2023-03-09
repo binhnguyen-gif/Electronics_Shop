@@ -10,5 +10,7 @@ interface CategoryRepositoryInterface {
     public function restoreCategoryById($id);
     public function foreverDeleteCategoryById($id);
     public function totalTrash();
+    public function getSubCategory();
+
 
 }

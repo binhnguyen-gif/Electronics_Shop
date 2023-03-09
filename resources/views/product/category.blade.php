@@ -8,15 +8,14 @@
             <li>
                 <a href="" title="">
                     {{data_get($category, 'name')}}
-                    @if(!empty(data_get($category, 'parent')))
+                    @if(!empty(data_get($category, 'children')))
                         <?php $sub_category = data_get($category, 'parent');?>
                         <i class="fa fa-angle-right pull-right" aria-hidden="true"></i>
                     @endif
                 </a>
-                @if(!empty(data_get($category, 'parent')))
-                    @dd(data_get($category, 'parent'))
+                @if(!empty(data_get($category, 'children')))
                     <ul class="sub">
-                        @foreach(data_get($category, 'parent') as $sub)
+                        @foreach(data_get($category, 'children') as $sub)
                             <li>
                                 <a href="">{{data_get($sub, 'name')}}</a>
                             </li>

@@ -27,18 +27,18 @@
                                     <div class="form-group">
                                         <select id ="sortControl" class = "form-control input-sm" onchange="sortby(this.value)">
                                             <option value="number_buy-desc" selected>Bán chạy nhất</option>
-                                            <option value="number_buy-desc">Bán chạy nhất</option>=
-                                            <option value="name-asc" selected>A → Z</option>=
-                                            <option value="name-asc" >A → Z</option>=
-                                            <option value="name-desc" selected>Z → A</option>=
-                                            <option value="name-desc">Z → A</option>=
-                                            <option value="price-asc" selected>Giá tăng dần</option>=
-                                            <option value="price-asc">Giá tăng dần</option>=
-                                            <option value="price-desc" selected>Giá giảm dần</option>=
-                                            <option value="price-desc">Giá giảm dần</option>=
-                                            <option value="created-desc" selected>Hàng mới nhất</option>=
-                                            <option value="created-asc" selected>Hàng cũ nhất</option>=
-                                            <option value="created-asc">Hàng cũ nhất</option>=
+                                            <option value="number_buy-desc">Bán chạy nhất</option>
+                                            <option value="name-asc" selected>A → Z</option>
+                                            <option value="name-asc" >A → Z</option>
+                                            <option value="name-desc" selected>Z → A</option>
+                                            <option value="name-desc">Z → A</option>
+                                            <option value="price-asc" selected>Giá tăng dần</option>
+                                            <option value="price-asc">Giá tăng dần</option>
+                                            <option value="price-desc" selected>Giá giảm dần</option>
+                                            <option value="price-desc">Giá giảm dần</option>
+                                            <option value="created-desc" selected>Hàng mới nhất</option>
+                                            <option value="created-asc" selected>Hàng cũ nhất</option>
+                                            <option value="created-asc">Hàng cũ nhất</option>
                                             {{--                                        <option value="number_buy-desc">Bán chạy nhất</option>=--}}
                                             {{--                                        <option value="name-asc">A → Z</option>=--}}
                                             {{--                                        <option value="name-desc">Z → A</option>=--}}
@@ -53,42 +53,39 @@
                             <div class="collection-filter" id = "list-product">
                                 <div class="category-products clearfix">
                                     <div class="products-grid clearfix">
-                                        {{--                                    @if() @endif--}}
-                                        <p class="no-products"> Danh mục hiện chưa có sản phẩm nào !</p>
-
-
-                                        <div class="col-md-3 col-lg-3 col-xs-6 col-6">
+                                        @if(empty($products))
+                                            <p class="no-products"> Danh mục hiện chưa có sản phẩm nào !</p>
+                                        @else
+                                            @foreach($products as $product)
+                                                <div class="col-md-3 col-lg-3 col-xs-6 col-6">
                                             <div class="product-lt">
                                                 <div class="lt-product-group-image">
                                                     <a href="" title="" >
-                                                        <img class="img-p"src="public/images/products/" alt="">
+                                                        <img class="img-p"src="{{asset('storage/upload' . '/' . data_get($product, 'avatar'))}}" alt="">
                                                     </a>
 
                                                     <div class="giam-percent">
-                                                        <span class="text-giam-percent">Giảm %</span>
+                                                        <span class="text-giam-percent">Giảm {{data_get($product, 'sale')}} %</span>
                                                     </div>
                                                 </div>
 
                                                 <div class="lt-product-group-info">
                                                     <a href="" title="">
-                                                        <h3></h3>
+                                                        <h3>{{data_get($product, 'name')}}</h3>
                                                     </a>
                                                     <div class="price-box">
-
                                                         <p class="old-price">
-                                                            <span class="price">₫</span>
+                                                            <span class="price">{{data_get($product, 'price')}}₫</span>
                                                         </p>
                                                         <p class="special-price">
-                                                            <span class="price">₫</span>
+                                                            <span class="price">{{data_get($product, 'price_sale')}}₫</span>
                                                         </p>
-
-
-                                                        <p class="old-price">
-                                                            <span class="price" style="color: #fff">₫</span>
-                                                        </p>
-                                                        <p class="special-price">
-                                                            <span class="price">₫</span>
-                                                        </p>
+{{--                                                        <p class="old-price">--}}
+{{--                                                            <span class="price" style="color: #fff">₫</span>--}}
+{{--                                                        </p>--}}
+{{--                                                        <p class="special-price">--}}
+{{--                                                            <span class="price">₫</span>--}}
+{{--                                                        </p>--}}
 
 
                                                     </div>
@@ -96,7 +93,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                            @endforeach
+                                        @endif
                                     </div>
                                     <div class = "text-center pull-right">
                                         <ul class ="pagination">

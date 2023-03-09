@@ -44,12 +44,4 @@ class HomeController extends Controller
         return view('product.detail', compact('product'));
     }
 
-    public function show()
-    {
-        $categories = Category::query()->with('sub')->whereParentId(0)->get()->toArray();
-        dd($categories);
-        return view('product.index', compact('categories'));
-    }
-
-
 }

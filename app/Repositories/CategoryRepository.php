@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\CategoryRepositoryInterface;
 use App\Models\Category;
+use App\Models\Product;
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
@@ -42,4 +43,11 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return Category::onlyTrashed()->count();
     }
+
+    public function getSubCategory() {
+       return Category::query()->with('children')->whereNull('parent_id')->get();
+    }
+
+
+
 }
