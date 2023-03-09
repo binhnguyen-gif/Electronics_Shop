@@ -11,4 +11,5 @@ interface ProductRepositoryInterface {
     public function restoreProductById($id);
     public function foreverDeleteProductById($id);
     public function totalTrash();
+    public function searchProduct(string $key_word);
 }

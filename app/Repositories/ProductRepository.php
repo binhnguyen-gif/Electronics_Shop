@@ -47,4 +47,17 @@ class ProductRepository implements ProductRepositoryInterface
     {
         return Product::onlyTrashed()->count();
     }
+
+    public function searchProduct($key_word)
+    {
+        // TODO: Implement searchProduct() method.
+        $products = Product::select(['id', 'name'])->orderBy('id', 'DESC');
+        if (!empty($key_word)){
+            $products = Product::query()->where(function ($query) use ($key_word) {
+                $query->where('name', 'like', '%' . $key_word . '%');
+            })->orderBy('id', 'DESC');
+        }
+
+        return $products->get();
+    }
 }
