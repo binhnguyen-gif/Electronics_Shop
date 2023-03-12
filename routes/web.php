@@ -116,6 +116,8 @@ Route::get('/product/{id}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/yield/{search?}', [CartController::class, 'index'])->name('yield');
 Route::get('/add-to-cart/{id}', [CartController::class, 'addCart'])->name('add_cart');
 Route::get('/cart-detail', [CartController::class, 'show'])->name('cart_detail');
+Route::post('/change-quantity', [CartController::class, 'update'])->name('change_quantity');
+Route::post('/remove-product', [CartController::class, 'remove'])->name('remove_product');
 //Route::get('/detail', [HomeController::class, 'detail'])->name('detail');
 
 Route::get('/set-locale/{language}', [LanguageController::class, 'setLocale'])->name('set_locale');

@@ -55,7 +55,7 @@ class ProductRepository implements ProductRepositoryInterface
         if (!empty($key_word)){
             $products = Product::query()->where(function ($query) use ($key_word) {
                 $query->where('name', 'like', '%' . $key_word . '%');
-            })->orderBy('id', 'DESC');
+            })->orderBy('id', 'ASC');
         }
 
         return $products->get();

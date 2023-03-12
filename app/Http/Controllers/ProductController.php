@@ -72,10 +72,41 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
-//    public function searchCategory($search = null)
-//    {
-//        $categories = $this->categoryRepository->getSubCategory()->toArray();
-//        $products = $this->productRepository->searchProduct($search)->toArray();
-//        return view('product.index', compact('categories', 'products'));
-//    }
+    public function update(Request $request)
+    {
+        try {
+            $id = $request->input('id');
+            $quantity = $request->input('quantity');
+            $cart = session()->get('cart');
+            if ($cart[$id]) {
+                $cart[$id]['quantity'] = $quantity;
+                session()->put('cart', $cart);
+                $data = ['status' => 200, 'message' => 'successful quantity change'];
+            }
+        } catch (\Exception $e) {
+            $data = ['status' => 500, 'message' => 'error change quantity'];
+            return response()->json($data);
+        }
+
+        return response()->json($data);
+    }
+
+    public function remove(Request $request)
+    {
+        try {
+            $id = $request->input('id');
+            $quantity = $request->input('quantity');
+            $cart = session()->get('cart');
+            if ($cart[$id]) {
+                unset($cart[$id]);
+                session()->put('cart', $cart);
+                $data = ['status' => 200, 'message' => 'success delete product'];
+            }
+        } catch (\Exception $e) {
+            $data = ['status' => 500, 'message' => 'error remove product'];
+            return response()->json($data);
+        }
+
+        return response()->json($data);
+    }
 }

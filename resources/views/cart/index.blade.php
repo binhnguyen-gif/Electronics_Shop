@@ -49,7 +49,7 @@
                                                 <div class="quantity clearfix">
                                                     <input name="quantity" id="{{$index}}" class="form-control"
                                                            type="number" value="{{$detail['quantity']}}" min="1"
-                                                           max="1000" onchange="onChangeSL({{$detail['quantity']}})">
+                                                           max="1000" onchange="onChangeSL({{$index}})">
                                                 </div>
                                             </td>
                                             <td>
@@ -117,34 +117,40 @@
 
 @push('js')
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <script>
         function onChangeSL(id) {
-            {{--var sl = document.getElementById(id).value;--}}
-            {{--var strurl = "<?php--}}
-            {{--              echo base_url(); ?>" + '/sanpham/update';--}}
-            {{--jQuery.ajax({--}}
-            {{--    url: strurl,--}}
-            {{--    type: 'POST',--}}
-            {{--    dataType: 'json',--}}
-            {{--    data: {id: id, sl: sl},--}}
-            {{--    success: function (data) {--}}
-            {{--        document.location.reload(true);--}}
-            {{--    }--}}
-            {{--});--}}
+            var sl = $('input[name="quantity"]').val();
+            var strurl = "{{route('change_quantity')}}";
+            console.log('va'+sl+' url'+strurl);
+            $.ajax({
+                url: strurl,
+                type: 'POST',
+                dataType: 'json',
+                data: {id: id, quantity: sl},
+                success: function (data) {
+                    document.location.reload(true);
+                }
+            });
         }
 
         function onRemoveProduct(id) {
-            {{--var strurl = "<?php--}}
-            {{--              echo base_url(); ?>" + '/sanpham/remove';--}}
-            {{--jQuery.ajax({--}}
-            {{--    url: strurl,--}}
-            {{--    type: 'POST',--}}
-            {{--    dataType: 'json',--}}
-            {{--    data: {id: id},--}}
-            {{--    success: function (data) {--}}
-            {{--        document.location.reload(true);--}}
-            {{--        alert('Xóa sản phẩm thành công !!');--}}
-            {{--    }--}}
-            {{--});--}}
+            var strurl = "{{route('remove_product')}}";
+            jQuery.ajax({
+                url: strurl,
+                type: 'POST',
+                dataType: 'json',
+                data: {id: id},
+                success: function (data) {
+                    document.location.reload(true);
+                    alert('Xóa sản phẩm thành công !!');
+                }
+            });
         }
     </script>
 @endpush
