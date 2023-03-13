@@ -27,8 +27,8 @@
                 <li class="pull-left"><a href="{{route('yield')}}">Sản phẩm</a></li>
 
                 <li class="pull-left"><a href="tin-tuc/1">Tin tức</a></li>
-                <li class="pull-left"><a href="gioi-thieu">Giới thiệu</a></li>
-                <li class="pull-left"><a href="lien-he">Liên hệ</a></li>
+                <li class="pull-left"><a href="{{route('introduce')}}">Giới thiệu</a></li>
+                <li class="pull-left"><a href="{{route('contact')}}">Liên hệ</a></li>
             </ul>
         </div>
     </div>

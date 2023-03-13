@@ -16,16 +16,15 @@
             <div class="col-md-12">
                 <div class="box" id="view">
                     <!-- /.box-header -->
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                    </div>
+{{--                    <div class="alert alert-success">--}}
+{{--                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>--}}
+{{--                    </div>--}}
                     <div class="box-body">
-                        <?php ?>
-                        <div class="row">
-                            <div class="alert alert-success">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            </div>
-                        </div>
+{{--                        <div class="row">--}}
+{{--                            <div class="alert alert-success">--}}
+{{--                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="row" style='padding:0px; margin:0px;'>
                             <!--ND-->
                             <div class="table-responsive">

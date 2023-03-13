@@ -20,21 +20,18 @@
                         <div class="box-body">
 
                             <div class="row">
-                                <div class="alert alert-success">
-                                    <?php
-                                    ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
-                                    </button>
-                                </div>
+{{--                                <div class="alert alert-success">--}}
+{{--                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×--}}
+{{--                                    </button>--}}
+{{--                                </div>--}}
                             </div>
 
-                            <div class="row">
-                                <div class="alert alert-error">
-
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
-                                    </button>
-                                </div>
-                            </div>
+{{--                            <div class="row">--}}
+{{--                                <div class="alert alert-error">--}}
+{{--                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×--}}
+{{--                                    </button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                             <div class="row" style='padding:0px; margin:0px;'>
                                 <!--ND-->

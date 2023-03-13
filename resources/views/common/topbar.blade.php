@@ -28,7 +28,10 @@
                 <ul class="nav navbar navbar-nav pull-right" id="nav2">
                     @if(Auth::check())
                         <li><a href="#">Xin chào: {{ Auth::user()->name }}</a></li>
-                        <li><a href="{{ route('logout') }}">Thoát</a></li>
+                        <li><a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('form_logout').submit();">Thoát</a></li>
+                        <form action="{{ route('admin.logout') }}" method="POST" id="form_logout">
+                            @csrf
+                        </form>
                     @else
                         <li><a href="{{ route('register') }}">Đăng ký</a></li>
                         <li><a href="{{ route('login') }}">Đăng nhập</a></li>

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProductController as CartController;
+use App\Http\Controllers\IntroduceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -118,6 +119,9 @@ Route::get('/add-to-cart/{id}', [CartController::class, 'addCart'])->name('add_c
 Route::get('/cart-detail', [CartController::class, 'show'])->name('cart_detail');
 Route::post('/change-quantity', [CartController::class, 'update'])->name('change_quantity');
 Route::post('/remove-product', [CartController::class, 'remove'])->name('remove_product');
+Route::get('/info-order', [CartController::class, 'infoOrder'])->name('info_order');
+Route::get('/introduce', [IntroduceController::class, 'index'])->name('introduce');
+Route::get('/contact', [IntroduceController::class, 'contact'])->name('contact');
 //Route::get('/detail', [HomeController::class, 'detail'])->name('detail');
 
 Route::get('/set-locale/{language}', [LanguageController::class, 'setLocale'])->name('set_locale');

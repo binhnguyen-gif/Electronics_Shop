@@ -3,7 +3,7 @@
 @section('page-title')
     <h1><i class="glyphicon glyphicon-cd"></i>Danh sách mã giảm giá</h1>
     <div class="breadcrumb">
-        <a class="btn btn-primary btn-sm" href="{{ route('admin.product.create') }}" role="button">
+        <a class="btn btn-primary btn-sm" href="{{ route('admin.coupon.create') }}" role="button">
             <span class="glyphicon glyphicon-plus"></span> Thêm mới
         </a>
         <a class="btn btn-primary btn-sm" href="{{ route('admin.sliders.recyclebin') }}" role="button">
@@ -20,16 +20,16 @@
                 <div class="box" id="view">
                     <div class="box-header with-border">
                         <!-- /.box-header -->
-                        <div class="alert alert-success">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                        </div>
+{{--                        <div class="alert alert-success">--}}
+{{--                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>--}}
+{{--                        </div>--}}
                         <div class="box-body">
-                            <div class="row">
-                                <div class="alert alert-success">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
-                                    </button>
-                                </div>
-                            </div>
+{{--                            <div class="row">--}}
+{{--                                <div class="alert alert-success">--}}
+{{--                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×--}}
+{{--                                    </button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="row" style='padding:0px; margin:0px;'>
                                 <!--ND-->
                                 <div class="table-responsive">

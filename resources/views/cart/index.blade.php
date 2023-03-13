@@ -67,7 +67,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <button class="btn" onclick="window.location.href='san-pham'"><a href="">Tiếp tục mua
+                                <button class="btn"><a href="{{route('home')}}">Tiếp tục mua
                                         hàng</a></button>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-4">
@@ -90,9 +90,11 @@
                                         <tr>
 
                                             <td colspan="2">
-                                                <button type="button" onclick="window.location.href='info-order'"
-                                                        class="btn-next-checkout">Đặt hàng
-                                                </button>
+                                                <a href="{{route('info_order')}}">
+                                                    <button type="button"
+                                                            class="btn-next-checkout">Đặt hàng
+                                                    </button>
+                                                </a>
                                             </td>
                                         </tr>
                                         </tbody>

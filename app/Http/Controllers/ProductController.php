@@ -110,4 +110,8 @@ class ProductController extends Controller
         return response()->json($data);
     }
 
+    public function infoOrder() {
+        return view('cart.info-order');
+    }
+
 }
