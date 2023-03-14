@@ -91,12 +91,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
             Route::get('/', [CustomerController::class, 'index'])->name('index');
-//        Route::get('/create', [CustomerController::class, 'create'])->name('create');
         });
 
         Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
             Route::get('/', [OrderController::class, 'index'])->name('index');
-//        Route::get('/create', [OrderController::class, 'create'])->name('create');
         });
 
         Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
@@ -108,8 +106,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::get('/', [CouponController::class, 'index'])->name('index');
             Route::get('/create', [CouponController::class, 'create'])->name('create');
             Route::post('/store', [CouponController::class, 'store'])->name('store');
+            Route::get('/show/{id}', [CouponController::class, 'show'])->name('show');
             Route::put('/update/{id}', [CouponController::class, 'update'])->name('update');
-            Route::put('/delete/{id}', [CouponController::class, 'delete'])->name('delete');
+            Route::post('/delete/{id}', [CouponController::class, 'delete'])->name('delete');
         });
     });
 });

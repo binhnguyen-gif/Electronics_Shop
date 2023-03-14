@@ -2,7 +2,7 @@
 
 @php
     $isUpdate = isset($id) ? true : false;
-    $route = isset($id) ? route('admin.coupon.update') : route('admin.coupon.store');
+    $route = isset($id) ? route('admin.coupon.update', ['id' => $id]) : route('admin.coupon.store');
 @endphp
 
 @section('page-title')
@@ -27,12 +27,14 @@
         <section class="content">
             @if(session()->has('success'))
                 <div class="alert alert-success">
+                    {{session()->get('success')}}
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
                 </div>
             @endif
             @if(session()->has('error'))
                 <div class="row">
                     <div class="alert alert-success">
+                        {{session()->get('error')}}
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×
                         </button>
                     </div>
@@ -45,46 +47,56 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Mã giảm giá</label>
-                                    <input type="text" class="form-control" name="code" style="width:100%"
+                                    <input type="text" class="form-control" name="code" value="{{$isUpdate ? data_get($coupon, 'code') : old('code')}}" style="width:100%"
                                            placeholder="Mã giảm giá">
                                     <div class="error"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Số tiền giảm giá</label>
-                                    <input type="number" class="form-control" name="discount" style="width:100%"
+                                    <input type="number" class="form-control" name="discount" value="{{$isUpdate ? data_get($coupon, 'discount') : old('discount')}}" style="width:100%"
                                            placeholder="Số tiền giảm giá">
                                     <div class="error"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Số lần giới hạn nhập</label>
-                                    <input type="number" class="form-control" name="limit_number" style="width:100%"
+                                    <input type="number" class="form-control" name="limit_number" value="{{$isUpdate ? data_get($coupon, 'limit_number') : old('limit_number')}}" style="width:100%"
                                            placeholder="Số lần giới hạn nhập">
                                     <div class="error" id="password_error"></div>
                                 </div>
                                 <div class="form-group">
                                     <label>Số tiền đơn hàng tối thiểu được áp dụng</label>
-                                    <input type="number" class="form-control" name="payment_limit" style="width:100%"
+                                    <input type="number" class="form-control" name="payment_limit" value="{{$isUpdate ? data_get($coupon, 'payment_limit') : old('payment_limit')}}" style="width:100%"
                                            placeholder="Đơn hàng tối thiểu được áp dụng">
                                     <div class="error" id="password_error"></div>
                                 </div>
-
+                                @if($isUpdate)
+                                    <div class="form-group">
+                                        <label>Số lần đã nhập</label>
+                                        <input type="number" class="form-control" name="number_used" style="width:100%" value="{{data_get($coupon, 'number_used')}}" disabled="">
+                                        <div class="error" id="password_error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Số lần còn lại</label>
+                                        <input type="text" class="form-control" style="width:100%" placeholder="Số lần giới hạn nhập" value="{{data_get($coupon, 'limit_number') - data_get($coupon, 'number_used')}}" disabled="">
+                                    </div>
+                                @endif
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Ngày giới hạn nhập</label>
                                     <div class="form-group">
-                                        <input type="date" style="width:100%" name="expiration_date" required>
+                                        <input type="date" style="width:100%" name="expiration_date" value="{{$isUpdate ? data_get($coupon, 'expiration_date') : old('expiration_date')}}" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Mô tả ngắn</label>
-                                    <textarea name="description" class="form-control"></textarea>
+                                    <textarea name="description" class="form-control">{{$isUpdate ? data_get($coupon, 'description') : old('description')}}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Trạng thái</label>
                                     <select name="status" class="form-control" style="width:235px">
-                                        <option value="1">Có hiệu lực</option>
-                                        <option value="0">Không có hiệu lực</option>
+                                        <option value="1" {{($coupon->status == 1) ? 'selected' : ''}}>Có hiệu lực</option>
+                                        <option value="0" {{($coupon->status == 0) ? 'selected' : ''}}>Không có hiệu lực</option>
                                     </select>
                                 </div>
 

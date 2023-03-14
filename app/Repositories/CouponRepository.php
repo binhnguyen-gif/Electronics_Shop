@@ -20,8 +20,7 @@ class CouponRepository implements CouponRepositoryInterface
 
     public function getCouponById($id)
     {
-        $category = Discount::query()->where('id', $id)->first();
-        return $category;
+        return Discount::query()->where('id', $id)->first();;
     }
 
     public function updateCoupon($id, array $params)

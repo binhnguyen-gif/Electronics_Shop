@@ -62,17 +62,23 @@
                                                         </a>
                                                     </td>
                                                     <td class="text-center">
-                                                        <a class="btn btn-success btn-xs" href="'.base_url().'admin/coupon/update/'.$row['id'].'" role = "button">
+                                                        <a class="btn btn-success btn-xs" href="{{route('admin.coupon.show', ['id' => $coupon->id])}}" role = "button">
                                                             <span class="glyphicon glyphicon-edit"></span>Sửa
                                                         </a>
 {{--                                                        <p class="fa fa-lock" style="color:red"> Không thể sửa</p>--}}
                                                     </td>
                                                     <td class="text-center">
-                                                        <a class="btn btn-danger btn-xs" href="admin/coupon/trash"
-                                                           onclick="return confirm('Xác nhận Xóa Mã giảm giá này ?')"
+                                                        <a class="btn btn-danger btn-xs" href="javascript:void(0);"
+                                                           onclick="event.preventDefault();
+                                                            if (confirm('Xác nhận xóa nha cung c này ?')) {
+                                                                document.getElementById('delete-coupon').submit();
+                                                            }"
                                                            role="button">
                                                             <span class="glyphicon glyphicon-trash"></span>Xóa
                                                         </a>
+                                                        <form action="{{route('admin.coupon.delete', ['id' => data_get($coupon, 'id')])}}" method="POST" id="delete-coupon">
+                                                            @csrf
+                                                        </form>
                                                     </td>
                                                 </tr>
                                             @endforeach
