@@ -19,7 +19,7 @@ class CreateOrderProductTable extends Migration
             $table->bigInteger('order_id')->unsigned();
             $table->integer('count');
             $table->integer('price');
-            $table->boolean('trash');
+            $table->boolean('trash')->default(0);
             $table->boolean('status');
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products');

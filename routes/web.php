@@ -122,6 +122,7 @@ Route::get('/cart-detail', [CartController::class, 'show'])->name('cart_detail')
 Route::post('/change-quantity', [CartController::class, 'update'])->name('change_quantity');
 Route::post('/remove-product', [CartController::class, 'remove'])->name('remove_product');
 Route::get('/info-order', [CartController::class, 'infoOrder'])->name('info_order');
+Route::post('/cart-coupon', [CartController::class, 'coupon'])->name('cart.coupon');
 Route::get('/introduce', [IntroduceController::class, 'index'])->name('introduce');
 Route::get('/contact', [IntroduceController::class, 'contact'])->name('contact');
 //Route::get('/detail', [HomeController::class, 'detail'])->name('detail');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\CategoryRepositoryInterface;
 use App\Interfaces\ProductRepositoryInterface;
+use App\Models\Discount;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -110,8 +111,21 @@ class ProductController extends Controller
         return response()->json($data);
     }
 
-    public function infoOrder() {
+    public function infoOrder()
+    {
         return view('cart.info-order');
+    }
+
+    public function coupon(Request $request)
+    {
+        $coupon = Discount::query()->where('code', $request->code)->first();
+        if (!empty($coupon)) {
+            $data = ['status' => 200, 'error' => false, 'data' => $coupon];
+            return response()->json($data);
+        } else {
+            $data = ['status' => 500, 'error' => true, 'data' => null];
+            return response()->json($data);
+        }
     }
 
 }
