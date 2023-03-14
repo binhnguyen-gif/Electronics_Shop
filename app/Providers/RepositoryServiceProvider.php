@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Interfaces\CategoryRepositoryInterface;
+use App\Interfaces\CouponRepositoryInterface;
 use App\Interfaces\ProducerRepositoryInterface;
 use App\Interfaces\ProductRepositoryInterface;
 use App\Interfaces\SliderRepositoryInterface;
 use App\Repositories\CategoryRepository;
+use App\Repositories\CouponRepository;
 use App\Repositories\ProducerRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\SliderRepository;
@@ -25,6 +27,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(ProducerRepositoryInterface::class, ProducerRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
+        $this->app->bind(CouponRepositoryInterface::class, CouponRepository::class);
     }
 
     /**

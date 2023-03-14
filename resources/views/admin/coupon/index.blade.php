@@ -6,9 +6,9 @@
         <a class="btn btn-primary btn-sm" href="{{ route('admin.coupon.create') }}" role="button">
             <span class="glyphicon glyphicon-plus"></span> Thêm mới
         </a>
-        <a class="btn btn-primary btn-sm" href="{{ route('admin.sliders.recyclebin') }}" role="button">
-            <span class="glyphicon glyphicon-trash"></span> Thùng rác({{ $total_trash ?? '' }})
-        </a>
+{{--        <a class="btn btn-primary btn-sm" href="{{ route('admin.coupon.recyclebin') }}" role="button">--}}
+{{--            <span class="glyphicon glyphicon-trash"></span> Thùng rác({{ $total_trash ?? '' }})--}}
+{{--        </a>--}}
     </div>
 @endsection
 
@@ -20,16 +20,7 @@
                 <div class="box" id="view">
                     <div class="box-header with-border">
                         <!-- /.box-header -->
-{{--                        <div class="alert alert-success">--}}
-{{--                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>--}}
-{{--                        </div>--}}
                         <div class="box-body">
-{{--                            <div class="row">--}}
-{{--                                <div class="alert alert-success">--}}
-{{--                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×--}}
-{{--                                    </button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                             <div class="row" style='padding:0px; margin:0px;'>
                                 <!--ND-->
                                 <div class="table-responsive">
@@ -51,44 +42,40 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td class="text-center"></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>đ</td>
-                                            <td>
-
-                                            </td>
-                                            <td></td>
-                                            <td class="text-center">
-                                                <a href="admin/coupon/status/">
-
-                                                    <span class="glyphicon glyphicon-ok-circle mauxanh18"></span>
-
-                                                    <span class="glyphicon glyphicon-remove-circle maudo"></span>
-
-                                                </a>
-                                            </td>
-                                            <td class="text-center">
-                                                {{--                                                    <?php--}}
-                                                {{--                                                    if($user['role']==1){--}}
-                                                {{--                                                        echo '<a class="btn btn-success btn-xs" href="'.base_url().'admin/coupon/update/'.$row['id'].'" role = "button">--}}
-                                                {{--													<span class="glyphicon glyphicon-edit"></span>Sửa--}}
-                                                {{--												</a>';--}}
-                                                {{--                                                    }else{--}}
-                                                {{--                                                        echo '<p class="fa fa-lock" style="color:red"> Không thể sửa</p>';--}}
-                                                {{--                                                    }--}}
-                                                {{--                                                    ?>--}}
-                                            </td>
-                                            <td class="text-center">
-                                                <a class="btn btn-danger btn-xs" href="admin/coupon/trash"
-                                                   onclick="return confirm('Xác nhận Xóa Mã giảm giá này ?')"
-                                                   role="button">
-                                                    <span class="glyphicon glyphicon-trash"></span>Xóa
-                                                </a>
-                                            </td>
-                                        </tr>
-
+                                            @foreach($coupons as $coupon)
+                                                <tr>
+                                                    <td class="text-center">{{data_get($coupon, 'id')}}</td>
+                                                    <td>{{data_get($coupon, 'code')}}</td>
+                                                    <td>{{data_get($coupon, 'discount')}}</td>
+                                                    <td>{{data_get($coupon, 'payment_limit')}}đ</td>
+                                                    <td>
+                                                        {{data_get($coupon, 'limit_number')}}
+                                                    </td>
+                                                    <td>{{data_get($coupon, 'expiration_date')}}</td>
+                                                    <td class="text-center">
+                                                        <a href="admin/coupon/status/">
+                                                            @if(data_get($coupon, 'status') == 1)
+                                                                <span class="glyphicon glyphicon-ok-circle mauxanh18"></span>
+                                                            @else
+                                                                <span class="glyphicon glyphicon-remove-circle maudo"></span>
+                                                            @endif
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a class="btn btn-success btn-xs" href="'.base_url().'admin/coupon/update/'.$row['id'].'" role = "button">
+                                                            <span class="glyphicon glyphicon-edit"></span>Sửa
+                                                        </a>
+{{--                                                        <p class="fa fa-lock" style="color:red"> Không thể sửa</p>--}}
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a class="btn btn-danger btn-xs" href="admin/coupon/trash"
+                                                           onclick="return confirm('Xác nhận Xóa Mã giảm giá này ?')"
+                                                           role="button">
+                                                            <span class="glyphicon glyphicon-trash"></span>Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

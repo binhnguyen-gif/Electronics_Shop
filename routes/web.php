@@ -107,6 +107,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::group(['prefix' => 'coupon', 'as' => 'coupon.'], function () {
             Route::get('/', [CouponController::class, 'index'])->name('index');
             Route::get('/create', [CouponController::class, 'create'])->name('create');
+            Route::post('/store', [CouponController::class, 'store'])->name('store');
+            Route::put('/update/{id}', [CouponController::class, 'update'])->name('update');
+            Route::put('/delete/{id}', [CouponController::class, 'delete'])->name('delete');
         });
     });
 });

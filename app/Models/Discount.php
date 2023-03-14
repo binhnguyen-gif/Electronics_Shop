@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Discount extends Model
 {
     use HasFactory;
+
+    protected $table = 'discounts';
+
+    protected $fillable = [
+        'code',
+        'discount',
+        'limit_number',
+        'payment_limit',
+        'expiration_date',
+        'description',
+        'status'
+    ];
 }
