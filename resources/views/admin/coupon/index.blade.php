@@ -46,8 +46,8 @@
                                                 <tr>
                                                     <td class="text-center">{{data_get($coupon, 'id')}}</td>
                                                     <td>{{data_get($coupon, 'code')}}</td>
-                                                    <td>{{data_get($coupon, 'discount')}}</td>
-                                                    <td>{{data_get($coupon, 'payment_limit')}}đ</td>
+                                                    <td>{{number_format(data_get($coupon, 'discount'))}} đ</td>
+                                                    <td>{{number_format(data_get($coupon, 'payment_limit'))}} đ</td>
                                                     <td>
                                                         {{data_get($coupon, 'limit_number')}}
                                                     </td>

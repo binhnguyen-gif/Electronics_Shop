@@ -20,4 +20,8 @@ class Discount extends Model
         'description',
         'status'
     ];
+
+    public function scopeExpirationDate($query, $param) {
+        return $query->whereDate('expiration_date', '<=', $param);
+    }
 }
