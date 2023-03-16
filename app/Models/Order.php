@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Listeners\SendMailConfirmOrder;
+use App\Events\CustomerOrder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +17,7 @@ class Order extends Model
             $columns = $order->getDirty();
             foreach ($columns as $column => $val){
                 if ($column == 'status'){
-                    dispatch(new SendMailConfirmOrder($order));
+                    event(new CustomerOrder($order));
                 }
             }
         });

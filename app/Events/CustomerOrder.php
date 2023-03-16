@@ -14,15 +14,15 @@ use Illuminate\Queue\SerializesModels;
 class CustomerOrder  implements ShouldQueue
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    protected $order;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($order)
     {
-        //
+        $this->order = $order;
     }
 
     /**
