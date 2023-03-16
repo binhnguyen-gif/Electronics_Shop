@@ -24,4 +24,21 @@ class Discount extends Model
     public function scopeExpirationDate($query, $param) {
         return $query->whereDate('expiration_date', '<=', $param);
     }
+
+    public function isValid($total)
+    {
+        if ($this->expiration_date && $this->expiration_date < now()) {
+            return false;
+        }
+
+        if ($this->payment_limit && $this->payment_limit > $total) {
+            return false;
+        }
+
+        if ($this->limit_number && $this->limit_number < $this->number_used) {
+            return false;
+        }
+
+        return true;
+    }
 }

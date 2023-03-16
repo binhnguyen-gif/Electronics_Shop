@@ -116,16 +116,43 @@ class ProductController extends Controller
         return view('cart.info-order');
     }
 
-    public function coupon(Request $request)
+//    public function coupon(Request $request)
+//    {
+//        $coupon = Discount::query()->where('code', $request->code)->first();
+//        if (!empty($coupon)) {
+//            $data = ['status' => 200, 'error' => false, 'data' => $coupon];
+//            return response()->json($data);
+//        } else {
+//            $data = ['status' => 500, 'error' => true, 'data' => null];
+//            return response()->json($data);
+//        }
+//    }
+
+    public function applyCoupon(Request $request)
     {
-        $coupon = Discount::query()->where('code', $request->code)->first();
-        if (!empty($coupon)) {
-            $data = ['status' => 200, 'error' => false, 'data' => $coupon];
-            return response()->json($data);
-        } else {
-            $data = ['status' => 500, 'error' => true, 'data' => null];
-            return response()->json($data);
+        $cart = $request->session()->get('cart');
+        $total = 0;
+        foreach ((array)$cart as $item) {
+            $total += $item['quantity'] * $item['price'];
         }
+
+        $coupon = Coupon::where('code', $request->coupon_code)->first();
+
+        if (!$coupon || !$coupon->isValid($total)) {
+            return response()->json(['error' => 'Coupon is not valid.']);
+        }
+
+        $totalAmount = $total - $coupon->discount;
+
+        $request->session()->put('cart.coupon', [
+            'code' => $coupon->code,
+            'discount' => $coupon->discount,
+            'totalAmount' => $totalAmount
+        ]);
+
+        return response()->json(['success' => 'Coupon applied successfully.']);
     }
+
+
 
 }

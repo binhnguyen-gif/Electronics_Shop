@@ -165,9 +165,15 @@
                                         </td>
                                         <td style="float: right;"></td>
                                     </tr>
-
+                                    @if (session()->has('cart.coupon'))
                                     <tr id="voucher">
+                                        <td colspan="3">Voucher giảm giá: </td>
+                                        <td>
+                                            <p style="float:right;">{{ session('cart.coupon.discount') }} VNĐ</p>
+                                        </td>
+                                        <td style="cursor: pointer;"><a onclick="removeCoupon()"><i class="fas fa-times"></i></a></td>
                                     </tr>
+                                    @endif
 
                                     <tr style="background: #f4f4f4">
                                         <td colspan="3">
@@ -177,7 +183,11 @@
 
                                         <td class="text-center">
                                             <p style="font-size: 15px; color: red;">
+                                                @if (!session()->has('cart.coupon'))
                                                 {{number_format($total)}} VNĐ
+                                                @else
+                                                    {{ number_format(session('cart.coupon.totalAmount')) }} VNĐ
+                                                @endif
                                             </p>
                                         </td>
                                     </tr>
