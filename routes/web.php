@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProductController as CartController;
 use App\Http\Controllers\IntroduceController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,7 +79,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         });
 
         Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
-            Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('/{q?}', [ProductController::class, 'index'])->name('index');
             Route::get('/create', [ProductController::class, 'create'])->name('create');
             Route::post('/create', [ProductController::class, 'store'])->name('store');
             Route::get('/show/{id}', [ProductController::class, 'show'])->name('show');
@@ -130,5 +131,22 @@ Route::get('/contact', [IntroduceController::class, 'contact'])->name('contact')
 Route::get('/set-locale/{language}', [LanguageController::class, 'setLocale'])->name('set_locale');
 
 
+// Route::get('add-all-to-index', function() {
+//     Product::createIndex($shard = null, $replicas = null);
+//     Product::putMapping($ignoreConflicts = true);
 
+    
+//     Product::addAllToIndex();
 
+//     return view('welcome');
+// });
+
+Route::get('search-es/{search}', function ($search) {
+    $response = Product::searchByQuery([
+        'match' => [
+            'name' => $search,
+        ]
+    ]);
+
+     dd($response);
+});

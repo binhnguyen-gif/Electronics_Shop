@@ -26,10 +26,23 @@ class ProductController extends Controller
         $this->uploadImage = $uploadImage;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $listProduct = $this->productRepository->getAllProduct();
+
+        $listProduct = [];
+
+        if ($request->input('q')) {
+            $listProduct = Product::searchByQuery([
+                'match' => [
+                    'name' => $request->input('q'),
+                ]
+            ])->toArray();
+        }else {
+            $listProduct = $this->productRepository->getAllProduct();
+        }
+
         $total_trash = $this->productRepository->totalTrash();
+
         return view('admin.product.index', compact('listProduct', 'total_trash'));
     }
 

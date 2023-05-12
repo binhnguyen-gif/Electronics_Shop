@@ -1,5 +1,9 @@
 @extends("admin.layouts.app")
 
+@push('css')
+    <link rel="stylesheet" href="{{ asset("assets/css/product.css") }}">
+@endpush
+
 @section('page-title')
     <h1><i class="glyphicon glyphicon-cd"></i>Danh sách sản phẩm</h1>
     <div class="breadcrumb">
@@ -15,6 +19,17 @@
 @section('content')
     <!-- Main content -->
     <section class="content">
+        <form method="get" accept-charset="utf-8">
+            <div class="row">
+                <div class="col-md-12 form-search">
+                    <div class="product-search col-md-3">
+                        <input type="text" name="q" class="form-control" placeholder="Tìm kiếm...">
+                    </div>   
+                    <button class="product-submit">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="box" id="view">
